@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mixtape Wiki - Everything You Need to Know</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ff00ff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .nav-links a:hover {
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: 1px solid #ffffff;
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+        }
+        
+        .sidebar h3 {
+            font-family: 'Orbitron', monospace;
+            color: #ff00ff;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar a {
+            color: #cccccc;
+            text-decoration: none;
+            padding: 0.5rem;
+            display: block;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar a:hover, .sidebar a.active {
+            background: rgba(255, 0, 255, 0.2);
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+        
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .content h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .content h2 {
+            font-family: 'Orbitron', monospace;
+            color: #00ffff;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #00ffff;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content h3 {
+            color: #ff00ff;
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.3rem;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+            color: #e0e0e0;
+        }
+        
+        .content ul, .content ol {
+            margin: 1rem 0 1rem 2rem;
+            color: #e0e0e0;
+        }
+        
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Special Sections */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+            border: 1px solid #ff00ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #00ffff;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .feature-card h4 {
+            color: #00ffff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .requirements-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .requirements-table th,
+        .requirements-table td {
+            border: 1px solid #444;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .requirements-table th {
+            background: rgba(255, 0, 255, 0.2);
+            color: #ff00ff;
+            font-weight: bold;
+        }
+        
+        .requirements-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .content h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px #ff00ff; }
+            50% { box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+        }
+        
+        .glow {
+            animation: glow 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">MY MIXTAPE WIKI</div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.html">← Back to Main Site</a></li>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#creator">About Creator</a></li>
+                        <li><a href="#features">Features</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <aside class="sidebar">
+                <h3>📖 Wiki Contents</h3>
+                <ul>
+                    <li><a href="#what-is-mixtape" class="active">What is My Mixtape?</a></li>
+                    <li><a href="#the-origin-story">The Origin Story</a></li>
+                    <li><a href="#meet-the-creator">Meet the Creator</a></li>
+                    <li><a href="#system-requirements">System Requirements</a></li>
+                    <li><a href="#upcoming-features">Upcoming Features</a></li>
+                    <li><a href="#vr-experience">VR Experience</a></li>
+                    <li><a href="#mobile-companion">Mobile Companion</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#roadmap">Development Roadmap</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </aside>
+
+            <main class="content">
+                <section id="what-is-mixtape">
+                    <h1>🎵 What is My Mixtape?</h1>
+                    
+                    <div class="highlight-box">
+                        <p><strong>My Mixtape</strong> is a revolutionary music streaming organizer that brings back the nostalgic magic of creating and sharing mixtapes, but reimagined for the digital age with cutting-edge VR technology.</p>
+                    </div>
+
+                    <p>Remember the days when creating a mixtape was an art form? When you'd spend hours carefully selecting each song, thinking about the flow, the mood, the story you wanted to tell? My Mixtape brings that intimate, personal experience back to music streaming.</p>
+
+                    <h2 id="the-origin-story">🎬 The Origin Story</h2>
+                    
+                    <p>The idea for My Mixtape was born from a simple frustration: <em>modern music streaming feels cold and algorithmic</em>. While we have access to millions of songs, we've lost the personal touch, the curation, the storytelling aspect of music sharing.</p>
+
+                    <p>The creator noticed that despite having access to every song ever recorded, people were spending less time actually <em>listening</em> to music and more time endlessly scrolling through recommendations. The magic of discovering new music through friends, the excitement of receiving a carefully crafted playlist, the ritual of listening to an album from start to finish – all of this was disappearing.</p>
+
+                    <div class="highlight-box">
+                        <h3>💡 The "Aha!" Moment</h3>
+                        <p>What if we could combine the personal touch of vintage mixtapes with the convenience of modern streaming, all wrapped in an immersive VR experience that makes music feel magical again?</p>
+                    </div>
+
+                    <h2 id="meet-the-creator">👨‍💻 Meet the Creator</h2>
+                    
+                    <p>My Mixtape is the brainchild of a passionate music lover and technology enthusiast who believes that the best innovations come from solving personal problems. With no formal coding background, this project represents the power of vision, determination, and modern AI-assisted development.</p>
+
+                    <h3>The Vision</h3>
+                    <p>The creator's mission is simple: <strong>Make music personal again</strong>. In a world of algorithmic recommendations and endless scrolling, My Mixtape aims to bring back the human element to music discovery and sharing.</p>
+
+                    <h3>Development Philosophy</h3>
+                    <ul>
+                        <li><strong>User-First Design:</strong> Every feature is built with the listener's experience in mind</li>
+                        <li><strong>Nostalgia Meets Innovation:</strong> Combining the best of vintage culture with cutting-edge technology</li>
+                        <li><strong>Community-Driven:</strong> Features and improvements based on real user feedback</li>
+                        <li><strong>Accessibility:</strong> Making VR and advanced music tech available to everyone</li>
+                    </ul>
+
+                    <h2 id="system-requirements">⚙️ System Requirements</h2>
+
+                    <h3>VR Experience (Full Features)</h3>
+                    <table class="requirements-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Minimum</th>
+                                <th>Recommended</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>VR Headset</strong></td>
+                                <td>Oculus Quest 2, PICO 4</td>
+                                <td>Meta Quest 3, Apple Vision Pro</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Storage</strong></td>
+                                <td>2GB free space</td>
+                                <td>5GB free space</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Internet</strong></td>
+                                <td>10 Mbps</td>
+                                <td>25+ Mbps for 4K environments</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Streaming Service</strong></td>
+                                <td>Spotify Free, Apple Music</td>
+                                <td>Premium subscriptions recommended</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Mobile Companion App</h3>
+                    <ul>
+                        <li><strong>iOS:</strong> iPhone 12 or newer, iOS 15+</li>
+                        <li><strong>Android:</strong> Android 10+, 4GB RAM minimum</li>
+                        <li><strong>Storage:</strong> 500MB free space</li>
+                    </ul>
+
+                    <h3>Desktop/Web Version</h3>
+                    <ul>
+                        <li><strong>Browser:</strong> Chrome 90+, Firefox 88+, Safari 14+, Edge 90+</li>
+                        <li><strong>RAM:</strong> 4GB minimum, 8GB recommended</li>
+                        <li><strong>Internet:</strong> 5 Mbps for streaming</li>
+                    </ul>
+
+                    <h2 id="upcoming-features">🚀 Upcoming Features</h2>
+
+                    <div class="feature-grid">
+                        <div class="feature-card glow">
+                            <h4>🎪 Virtual Record Stores</h4>
+                            <p>Browse music in immersive vintage record shop environments</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🎵 AI Music Discovery</h4>
+                            <p>Smart recommendations based on your mixtape creation patterns</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>👥 Social Listening Rooms</h4>
+                            <p>Listen to mixtapes together with friends in VR</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🎨 Custom Environments</h4>
+                            <p>Design your own listening spaces and share them</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>📱 Advanced Mobile Controls</h4>
+                            <p>Full remote control of your VR experience</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🎤 Voice Commands</h4>
+                            <p>Control your music with natural voice interactions</p>
+                        </div>
+                    </div>
+
+                    <h2 id="vr-experience">🥽 The VR Experience</h2>
+
+                    <h3>Immersive Environments</h3>
+                    <p>Step into carefully crafted virtual spaces designed to enhance your music listening:</p>
+                    <ul>
+                        <li><strong>Retro Bedroom:</strong> A cozy 80s bedroom complete with vintage posters and neon lighting</li>
+                        <li><strong>Neon Cityscape:</strong> A cyberpunk-inspired urban environment with dynamic lighting</li>
+                        <li><strong>Vinyl Paradise:</strong> A collector's dream record room with thousands of albums</li>
+                        <li><strong>Concert Hall:</strong> Experience your mixtapes in a grand concert setting</li>
+                        <li><strong>Beach Sunset:</strong> Relax to your music on a serene virtual beach</li>
+                    </ul>
+
+                    <h3>Interactive Elements</h3>
+                    <ul>
+                        <li>Physical mixtape cases you can hold and examine</li>
+                        <li>Vintage audio equipment that responds to your touch</li>
+                        <li>Dynamic visualizations that react to your music</li>
+                        <li>Customizable lighting and atmosphere controls</li>
+                    </ul>
+
+                    <h2 id="mobile-companion">📱 Mobile Companion App</h2>
+
+                    <p>Your phone becomes the ultimate remote control for your VR music experience:</p>
+
+                    <h3>Core Features</h3>
+                    <ul>
+                        <li><strong>Remote Control:</strong> Play, pause, skip, and adjust volume</li>
+                        <li><strong>Playlist Management:</strong> Create and edit mixtapes on the go</li>
+                        <li><strong>Environment Selection:</strong> Switch VR environments from your phone</li>
+                        <li><strong>Social Sharing:</strong> Share your mixtapes with friends instantly</li>
+                        <li><strong>Offline Mode:</strong> Download mixtapes for offline listening</li>
+                    </ul>
+
+                    <h2 id="community">🌟 Community Features</h2>
+
+                    <h3>Sharing & Discovery</h3>
+                    <ul>
+                        <li><strong>Mixtape Gallery:</strong> Browse community-created playlists</li>
+                        <li><strong>Curator Profiles:</strong> Follow your favorite mixtape creators</li>
+                        <li><strong>Themed Collections:</strong> Discover mixtapes for every mood and occasion</li>
+                        <li><strong>Collaborative Playlists:</strong> Create mixtapes with friends</li>
+                    </ul>
+
+                    <h3>Social Features</h3>
+                    <ul>
+                        <li>Like, comment, and share mixtapes</li>
+                        <li>Follow friends and see their latest creations</li>
+                        <li>Join listening parties in VR</li>
+                        <li>Participate in weekly mixtape challenges</li>
+                    </ul>
+
+                    <h2 id="roadmap">🗺️ Development Roadmap</h2>
+
+                    <h3>Phase 1: Foundation (Q1 2024)</h3>
+                    <ul>
+                        <li>✅ Core VR experience with basic environments</li>
+                        <li>✅ Mobile companion app</li>
+                        <li>✅ Spotify and Apple Music integration</li>
+                        <li>🔄 Beta testing program launch</li>
+                    </ul>
+
+                    <h3>Phase 2: Social Features (Q2 2024)</h3>
+                    <ul>
+                        <li>🔄 Community mixtape sharing</li>
+                        <li>⏳ Social listening rooms</li>
+                        <li>⏳ User profiles and following system</li>
+                        <li>⏳ Collaborative playlist creation</li>
+                    </ul>
+
+                    <h3>Phase 3: Advanced Features (Q3 2024)</h3>
+                    <ul>
+                        <li>⏳ AI-powered music discovery</li>
+                        <li>⏳ Custom environment creator</li>
+                        <li>⏳ Voice command integration</li>
+                        <li>⏳ Advanced audio visualization</li>
+                    </ul>
+
+                    <h3>Phase 4: Platform Expansion (Q4 2024)</h3>
+                    <ul>
+                        <li>⏳ Additional streaming service integrations</li>
+                        <li>⏳ Desktop standalone application</li>
+                        <li>⏳ Smart TV and gaming console support</li>
+                        <li>⏳ API for third-party developers</li>
+                    </ul>
+
+                    <h2 id="faq">❓ Frequently Asked Questions</h2>
+
+                    <h3>Do I need a VR headset to use My Mixtape?</h3>
+                    <p>No! While the full experience is designed for VR, My Mixtape also works on desktop, mobile, and tablet devices. The VR experience is the premium way to enjoy the app, but you can create and listen to mixtapes on any device.</p>
+
+                    <h3>Which music streaming services are supported?</h3>
+                    <p>Currently, we support Spotify and Apple Music, with plans to add YouTube Music, Amazon Music, and Tidal in future updates.</p>
+
+                    <h3>Is My Mixtape free to use?</h3>
+                    <p>My Mixtape offers a free tier with basic features and limited VR environments. Premium subscriptions unlock additional environments, advanced features, and unlimited mixtape creation.</p>
+
+                    <h3>Can I use my existing playlists?</h3>
+                    <p>Yes! My Mixtape can import your existing playlists from supported streaming services and convert them into immersive mixtape experiences.</p>
+
+                    <h3>How do I share my mixtapes?</h3>
+                    <p>You can share mixtapes through the app's social features, generate shareable links, or export them back to your streaming service as regular playlists.</p>
+
+                    <h3>What makes this different from regular music apps?</h3>
+                    <p>My Mixtape focuses on the <em>experience</em> of music, not just the consumption. It's about storytelling, curation, and creating memorable moments around music, enhanced by immersive VR environments.</p>
+
+                    <div class="highlight-box">
+                        <h3>🎯 Ready to Start Your Mixtape Journey?</h3>
+                        <p>Join our beta program and be among the first to experience the future of music streaming. Sign up at <strong>mixtape.online</strong> to get early access and help shape the development of My Mixtape!</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active sidebar link based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id], h2[id]');
+            const sidebarLinks = document.querySelectorAll('.sidebar a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add some interactive elements
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+                this.style.transition = 'all 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96bc6bf33752f4e8',t:'MTc1NDYyODkyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

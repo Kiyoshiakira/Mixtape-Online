@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mixtape - Relive the Magic of VHS Collections</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #0a0a0a;
+            color: #00bfff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* CRT TV Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 191, 255, 0.03) 2px,
+                    rgba(0, 191, 255, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1000;
+            animation: scanlines 0.1s linear infinite;
+        }
+        
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
+        }
+        
+        /* Static noise animation */
+        .static-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><filter id="noise"><feTurbulence baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 999;
+            animation: static 0.2s infinite;
+        }
+        
+        @keyframes static {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-1px, 1px); }
+            50% { transform: translate(1px, -1px); }
+            75% { transform: translate(-1px, -1px); }
+            100% { transform: translate(1px, 1px); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            border-bottom: 3px solid #00bfff;
+            padding: 20px 0;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+        }
+        
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            color: #00bfff;
+            text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff; }
+            to { text-shadow: 0 0 20px #00bfff, 0 0 30px #00bfff, 0 0 40px #00bfff; }
+        }
+        
+        .tagline {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #ffff00;
+            text-shadow: 0 0 5px #ffff00;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #1a1a1a;
+            padding: 15px 0;
+            border-bottom: 2px solid #333;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .nav-item {
+            color: #00bfff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #00bfff;
+            background: rgba(0, 191, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .nav-item:hover {
+            background: #00bfff;
+            color: #000;
+            box-shadow: 0 0 15px #00bfff;
+            transform: scale(1.05);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border: 2px solid #00bfff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
+        }
+        
+        .section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            color: #ffff00;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ffff00;
+            text-align: center;
+        }
+        
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #cccccc;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 30px;
+            background: radial-gradient(circle, #2a2a2a, #0a0a0a);
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            color: #00bfff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #00bfff;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #ffff00;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff0080, #ff4000);
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(255, 0, 128, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 128, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(255, 0, 128, 0.5); }
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 0, 128, 0.8);
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            padding: 25px;
+            border: 2px solid #00bfff;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            color: #00bfff;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        /* Roadmap */
+        .roadmap-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(0, 191, 255, 0.1);
+            border-left: 4px solid #00bfff;
+            border-radius: 5px;
+        }
+        
+        .roadmap-status {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .status-complete { background: #00bfff; }
+        .status-progress { background: #ffff00; animation: blink 1s infinite; }
+        .status-planned { background: #666; }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #00bfff;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 2px solid #00bfff;
+            color: #00bfff;
+            font-family: 'Courier Prime', monospace;
+            border-radius: 5px;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #00bfff, #0099cc);
+            color: #000;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+        }
+        
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+        }
+        
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff0080, #ff4000);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .chatbot-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            height: 400px;
+            background: #1a1a1a;
+            border: 2px solid #00bfff;
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .chatbot-header {
+            background: #00bfff;
+            color: #000;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #333;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 8px;
+            background: #2a2a2a;
+            border: 1px solid #00bfff;
+            color: #00bfff;
+            border-radius: 3px;
+        }
+        
+        .chatbot-input button {
+            margin-left: 5px;
+            padding: 8px 12px;
+            background: #00bfff;
+            color: #000;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            border-top: 3px solid #00bfff;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: #00bfff;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #ffff00;
+            text-shadow: 0 0 10px #ffff00;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo { font-size: 2rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-container { flex-direction: column; align-items: center; }
+            .features-grid { grid-template-columns: 1fr; }
+            .chatbot-window { width: 280px; }
+        }
+        
+        /* Hidden sections */
+        .section { display: none; }
+        .section.active { display: block; }
+        .section#home { display: block; }
+    </style>
+</head>
+<body>
+    <div class="static-overlay"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">MY MIXTAPE</div>
+            <div class="tagline">Relive the Magic of VHS Collections in VR</div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="nav-item" onclick="showSection('home')">Home</a>
+                <a href="#" class="nav-item" onclick="showSection('download')">Download</a>
+                <a href="#" class="nav-item" onclick="showSection('features')">Features</a>
+                <a href="#" class="nav-item" onclick="showSection('community')">Community</a>
+                <a href="#" class="nav-item" onclick="showSection('roadmap')">Roadmap</a>
+                <a href="#" class="nav-item" onclick="showSection('contact')">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <div class="hero">
+                    <h1>Welcome to My Mixtape</h1>
+                    <p class="hero-subtitle">Transform your streaming experience into a nostalgic VHS collection</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 30px;">Pull a tape from your virtual shelf, slide it into the VCR, and watch your favorite shows with that authentic retro magic.</p>
+                    <a href="#" class="cta-button" onclick="showSection('download')">Download Now</a>
+                </div>
+                
+                <div class="section">
+                    <h2>How It Works</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <span class="feature-icon">📼</span>
+                            <h3>Create Playlists</h3>
+                            <p>Build custom VHS-style mixtapes with URLs from any streaming service</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🏠</span>
+                            <h3>Virtual Shelf</h3>
+                            <p>Organize your collection on beautiful wooden shelves, just like the old days</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🥽</span>
+                            <h3>VR Experience</h3>
+                            <p>Physically grab tapes, insert them into your VCR, and watch on your virtual TV</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">📱</span>
+                            <h3>Mobile Remote</h3>
+                            <p>Control your experience with our upcoming iOS/Android remote app</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Download Section -->
+            <section id="download" class="section">
+                <h2>Download My Mixtape</h2>
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <p style="font-size: 1.3rem; margin-bottom: 20px;">Experience the magic of VHS collections today!</p>
+                    <a href="#" class="cta-button" style="margin: 10px;">Download for Windows</a>
+                    <a href="#" class="cta-button" style="margin: 10px;">Download for Mac</a>
+                    <a href="#" class="cta-button" style="margin: 10px;">Download for Linux</a>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>System Requirements</h3>
+                        <p><strong>Minimum:</strong><br>
+                        • Windows 10/macOS 10.14/Ubuntu 18.04<br>
+                        • 4GB RAM<br>
+                        • DirectX 11 compatible graphics<br>
+                        • 2GB storage space</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>VR Requirements</h3>
+                        <p><strong>Supported Headsets:</strong><br>
+                        • Oculus Rift/Quest<br>
+                        • HTC Vive<br>
+                        • Windows Mixed Reality<br>
+                        • Valve Index</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 20px; background: rgba(255, 255, 0, 0.1); border: 2px solid #ffff00; border-radius: 10px;">
+                    <h3 style="color: #ffff00; text-align: center; margin-bottom: 15px;">🚀 Coming Soon: Mobile Remote App</h3>
+                    <p style="text-align: center;">Control your VR experience with our iOS and Android remote app. Browse playlists, control playback, and manage your collection from your phone!</p>
+                </div>
+            </section>
+            
+            <!-- Features Section -->
+            <section id="features" class="section">
+                <h2>Upcoming Features</h2>
+                
+                <div class="feature-card" style="margin-bottom: 30px;">
+                    <h3>🎮 VR Experience</h3>
+                    <p>The heart of My Mixtape - a fully immersive VR environment where you can:</p>
+                    <ul style="text-align: left; margin-top: 15px;">
+                        <li>Walk up to your virtual VHS shelf</li>
+                        <li>Physically grab and examine tape cases</li>
+                        <li>Insert tapes into a realistic VCR with authentic sounds</li>
+                        <li>Watch content on a virtual TV or desktop screen</li>
+                        <li>Customize your virtual room and shelving</li>
+                    </ul>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">📱</span>
+                        <h3>Mobile Remote Control</h3>
+                        <p>iOS and Android app that acts as your universal remote. Browse playlists, control playback, and manage your collection from anywhere in the room.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">⏰</span>
+                        <h3>Smart Timers</h3>
+                        <p>Set custom timers for movies and shows. Choose from 25min, 50min presets, or set custom durations. We're working on intelligent duration detection from IMDb and Wikipedia!</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🌐</span>
+                        <h3>Universal URL Support</h3>
+                        <p>Works with any streaming service - Netflix, Hulu, YouTube, Disney+, and more. If it has a URL, it can be part of your mixtape.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🎨</span>
+                        <h3>Custom Tape Labels</h3>
+                        <p>Design your own VHS labels with custom artwork, colors, and text. Make each tape uniquely yours, just like the old days.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Community Section -->
+            <section id="community" class="section">
+                <h2>Join the Community</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">📋</span>
+                        <h3>Share Playlists</h3>
+                        <p>Discover and share curated playlists with the community. Find "80s Sci-Fi Classics," "Saturday Morning Cartoons," or "Cozy Rainy Day Movies" created by other users.</p>
+                        <div style="margin-top: 15px;">
+                            <textarea placeholder="Paste your playlist URLs here to share with the community..." style="width: 100%; height: 100px; background: #1a1a1a; border: 1px solid #00bfff; color: #00bfff; padding: 10px; border-radius: 5px;"></textarea>
+                            <button class="submit-btn" style="margin-top: 10px;">Share Playlist</button>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🛠️</span>
+                        <h3>Contribute Skills</h3>
+                        <p>Help make My Mixtape even better! We need:</p>
+                        <ul style="text-align: left; margin-top: 10px;">
+                            <li>3D artists for VHS tape and room models</li>
+                            <li>Developers for mobile app and VR features</li>
+                            <li>UI/UX designers for interface improvements</li>
+                            <li>Sound designers for authentic VHS audio</li>
+                            <li>Beta testers and feedback providers</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">💬</span>
+                        <h3>Discord Community</h3>
+                        <p>Join our Discord server to chat with other users, share playlist recommendations, get support, and stay updated on development progress.</p>
+                        <a href="#" class="cta-button" style="margin-top: 15px; font-size: 1rem; padding: 10px 20px;">Join Discord</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🎬</span>
+                        <h3>Playlist Database</h3>
+                        <p>Browse our growing database of community-created playlists. Copy and paste URLs directly into your own collections, or contribute your own curated lists.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Roadmap Section -->
+            <section id="roadmap" class="section">
+                <h2>Development Roadmap</h2>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-status status-complete"></div>
+                    <div>
+                        <h3 style="color: #00ff00;">✅ Core Desktop App</h3>
+                        <p>Basic playlist creation and URL management system</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-status status-progress"></div>
+                    <div>
+                        <h3 style="color: #ffff00;">🔄 VHS Interface Design</h3>
+                        <p>Retro-styled UI with authentic VHS aesthetics and animations</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-status status-progress"></div>
+                    <div>
+                        <h3 style="color: #ffff00;">🔄 Timer & Duration Features</h3>
+                        <p>Smart timing system with IMDb/Wikipedia integration for automatic duration detection</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-status status-planned"></div>
+                    <div>
+                        <h3 style="color: #666;">📱 Mobile Remote App</h3>
+                        <p>iOS and Android companion app for remote control and playlist management</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-status status-planned"></div>
+                    <div>
+                        <h3 style="color: #666;">🥽 VR Experience</h3>
+                        <p>Full VR implementation with physical tape interaction and virtual room environments</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-status status-planned"></div>
+                    <div>
+                        <h3 style="color: #666;">🌐 Community Platform</h3>
+                        <p>Playlist sharing, user profiles, and community features</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-status status-planned"></div>
+                    <div>
+                        <h3 style="color: #666;">🎨 Customization Suite</h3>
+                        <p>Custom tape labels, room themes, and personalization options</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <h2>Get In Touch</h2>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px; padding: 20px; background: rgba(0, 255, 255, 0.1); border: 2px solid #00ffff; border-radius: 10px;">
+                    <h3 style="color: #00ffff; margin-bottom: 15px;">Need Immediate Help?</h3>
+                    <p>Use our AI chatbot in the bottom right corner for instant answers, or click below to speak directly with our team.</p>
+                    <button class="cta-button" style="margin-top: 15px;" onclick="requestHumanSupport()">Talk to Human Support</button>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" onclick="toggleChatbot()">🤖</button>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">My Mixtape Assistant</div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div style="margin-bottom: 10px; color: #00bfff;">
+                    👋 Hi! I'm here to help with any questions about My Mixtape. Ask me about features, system requirements, or how to get started!
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Ask me anything..." onkeypress="handleChatbotEnter(event)">
+                <button onclick="sendChatbotMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My Mixtape. Bringing back the magic of VHS collections.</p>
+            <div class="social-links">
+                <a href="#">📧</a>
+                <a href="#">💬</a>
+                <a href="#">🐦</a>
+                <a href="#">📘</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+        }
+        
+        // Chatbot functionality
+        let chatbotOpen = false;
+        
+        function toggleChatbot() {
+            const window = document.getElementById('chatbotWindow');
+            chatbotOpen = !chatbotOpen;
+            window.style.display = chatbotOpen ? 'flex' : 'none';
+        }
+        
+        function sendChatbotMessage() {
+            const input = document.getElementById('chatbotInput');
+            const messages = document.getElementById('chatbotMessages');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.style.cssText = 'margin-bottom: 10px; text-align: right; color: #ffff00;';
+            userMsg.textContent = '👤 ' + message;
+            messages.appendChild(userMsg);
+            
+            // Add bot response
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.style.cssText = 'margin-bottom: 10px; color: #00bfff;';
+                botMsg.textContent = '🤖 ' + getBotResponse(message);
+                messages.appendChild(botMsg);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+            
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+        }
+        
+        function handleChatbotEnter(event) {
+            if (event.key === 'Enter') {
+                sendChatbotMessage();
+            }
+        }
+        
+        function getBotResponse(message) {
+            const msg = message.toLowerCase();
+            
+            if (msg.includes('vr') || msg.includes('virtual reality')) {
+                return 'The VR experience lets you physically grab VHS tapes from virtual shelves and insert them into a VCR! It works with Oculus, HTC Vive, and other major headsets.';
+            } else if (msg.includes('mobile') || msg.includes('app') || msg.includes('phone')) {
+                return 'Our mobile remote app is coming soon for iOS and Android! It will let you control your VR experience and manage playlists from your phone.';
+            } else if (msg.includes('download') || msg.includes('install')) {
+                return 'You can download My Mixtape for Windows, Mac, or Linux from our Download section. The basic version is available now, with VR features coming soon!';
+            } else if (msg.includes('playlist') || msg.includes('mixtape')) {
+                return 'Create custom playlists using URLs from any streaming service! You can also browse and copy community-shared playlists from our database.';
+            } else if (msg.includes('price') || msg.includes('cost') || msg.includes('free')) {
+                return 'My Mixtape is currently free during development! We want to build the best possible experience with community feedback.';
+            } else if (msg.includes('help') || msg.includes('support') || msg.includes('human')) {
+                return 'I can help with most questions, but if you need to speak with a human, use the "Talk to Human Support" button in the Contact section!';
+            } else {
+                return 'Great question! My Mixtape transforms your streaming experience into a nostalgic VHS collection. You can create playlists, organize them on virtual shelves, and experience them in VR. What specific feature would you like to know more about?';
+            }
+        }
+        
+        function requestHumanSupport() {
+            alert('Human support request submitted! We\'ll get back to you within 24 hours. For immediate help, try our Discord community!');
+        }
+        
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We\'ll get back to you soon. This is a demo form - in the real version, this would send an email.');
+        });
+        
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click sound effect simulation
+            const buttons = document.querySelectorAll('button, .nav-item, .cta-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Visual feedback for button clicks
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 100);
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96bb3a4884fb22f4',t:'MTc1NDYxNjQwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
