@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+/* Pixel/retro font for logo and headings */
+.pixel-font {
+    font-family: 'Press Start 2P', 'VT323', monospace;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Body background: deep purple/navy, pixel border, CRT scanlines */
+body {
+    background: #181530;
+    color: #f8e5a7;
+    font-family: 'VT323', monospace;
+    margin: 0;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* CRT scanlines overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(248,229,167,0.05) 3px,
+        rgba(248,229,167,0.05) 5px
+    );
+    z-index: 0;
+}
+
+/* Logo styles */
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 32px 0 12px 0;
+}
+
+.logo-img {
+    width: 80px;
+    height: 80px;
+    image-rendering: pixelated;
+    border: 3px solid #f8e5a7;
+    background: #181530;
+    border-radius: 12px;
+    box-shadow: 0 0 18px #181530, 0 0 38px #f8e5a7;
+}
+
+.logo-title {
+    font-size: 2.5rem;
+    font-family: 'Press Start 2P', 'VT323', monospace;
+    color: #f8e5a7;
+    text-shadow: 2px 2px 0 #6d5a9c, 0 0 8px #f8e5a7;
+    margin-left: 8px;
+    letter-spacing: 3px;
+}
+
+.tagline {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #aee6f8;
+    margin-bottom: 10px;
+    text-shadow: 0 0 4px #181530;
+    font-family: 'VT323', monospace;
+}
+
+/* Navigation bar: chunky pixel style */
+nav {
+    background: #2e2345;
+    border-bottom: 4px solid #f8e5a7;
+    box-shadow: 0 2px 0 #aee6f8;
+    margin-bottom: 18px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 0;
+}
+
+.nav-item {
+    font-family: 'Press Start 2P', monospace;
+    color: #f8e5a7;
+    background: #1a1a2e;
+    border: 2px solid #f8e5a7;
+    border-radius: 8px;
+    padding: 10px 22px;
+    margin: 0 2px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    font-size: 1rem;
+    box-shadow: 0 3px 0 #aee6f8;
+}
+
+.nav-item:hover {
+    background: #f8e5a7;
+    color: #181530;
+    box-shadow: 0 7px 15px #f8e5a7;
+}
+
+.section {
+    background: #251b34;
+    border: 2px solid #f8e5a7;
+    border-radius: 18px;
+    box-shadow: 0 0 8px #aee6f8;
+    padding: 30px;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Headings */
+.section h2,
+h1, h2, h3, h4 {
+    font-family: 'Press Start 2P', 'VT323', monospace;
+    color: #ffe66a;
+    text-shadow: 0 0 8px #ffe66a;
+    margin-bottom: 16px;
+}
+
+/* Pixel-style buttons */
+.cta-button, .submit-btn, button, input[type="submit"] {
+    font-family: 'Press Start 2P', monospace;
+    background: linear-gradient(90deg, #aee6f8 40%, #ffe66a 100%);
+    color: #181530;
+    border: 2px solid #f8e5a7;
+    border-radius: 8px;
+    box-shadow: 0 2px 0 #251b34;
+    padding: 12px 28px;
+    font-size: 1rem;
+    margin: 8px 2px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+.cta-button:hover, .submit-btn:hover, button:hover {
+    background: linear-gradient(90deg, #ffe66a 40%, #aee6f8 100%);
+    color: #251b34;
+    box-shadow: 0 6px 20px #ffe66a;
+}
+
+/* Features grid */
+.features-grid, .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.feature-card {
+    background: #1a1a2e;
+    border: 2px solid #aee6f8;
+    border-radius: 8px;
+    padding: 22px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px #181530;
+    color: #f8e5a7;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 12px 30px #aee6f8;
+}
+
+.feature-icon {
+    font-size: 2.7rem;
+    margin-bottom: 12px;
+    display: block;
+    color: #ffe66a;
+    text-shadow: 0 0 6px #ffe66a;
+}
+
+/* Pixel borders for lists/tables */
+ul, ol, table {
+    border: 2px solid #f8e5a7;
+    border-radius: 6px;
+    background: #251b34;
+    padding: 14px;
+    margin: 16px 0;
+}
+
+li {
+    font-size: 1rem;
+    color: #aee6f8;
+    margin-bottom: 8px;
+    font-family: 'VT323', monospace;
+}
+
+table th, table td {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    color: #f8e5a7;
+    background: #2e2345;
+    border: 2px solid #aee6f8;
+    padding: 10px;
+}
+
+/* Roadmap statuses */
+.roadmap-status {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    margin-right: 16px;
+    border: 2px solid #ffe66a;
+    background: #aee6f8;
+    box-shadow: 0 0 8px #ffe66a;
+}
+
+/* Inputs */
+input, textarea {
+    background: #181530;
+    color: #ffe66a;
+    border: 2px solid #f8e5a7;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+}
+
+input:focus, textarea:focus {
+    border-color: #aee6f8;
+    background: #251b34;
+    outline: none;
+}
+
+/* Footer */
+footer {
+    background: #181530;
+    color: #aee6f8;
+    border-top: 3px solid #f8e5a7;
+    padding: 24px 0;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    margin-top: 60px;
+    box-shadow: 0 -2px 0 #aee6f8;
+}
+
+/* Social links */
+.social-links a {
+    color: #ffe66a;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.social-links a:hover {
+    color: #aee6f8;
+    text-shadow: 0 0 10px #aee6f8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .logo-title { font-size: 1.5rem; }
+    .logo-img { width: 48px; height: 48px; }
+    .features-grid, .feature-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 8px; }
+}
