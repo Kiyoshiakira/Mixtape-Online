@@ -1,4 +1,4 @@
-# Playlist Master & Mixtape Watch Together
+# Mixtape Master & Mixtape Watch Together
 
 **Curate, share, and watch your favorite shows together — anywhere, any time, on any device.**
 
