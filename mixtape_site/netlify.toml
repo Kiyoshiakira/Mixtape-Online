@@ -1,0 +1,3 @@
+[build]
+  publish = "mixtape_site"
+  command = "" # (leave blank for static HTML/CSS/JS)
