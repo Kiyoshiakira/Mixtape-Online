@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In — VHS Mixtape</title>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js"></script>
+</head>
+<body>
+    <h1>Sign In to VHS Mixtape</h1>
+    <button id="google-btn">Sign in with Google</button>
+    <div id="status"></div>
+    <script>
+      // Your Firebase config here
+      const firebaseConfig = {
+        apiKey: "AIzaSyBr3GHLtueuC_cs9_Vrzv5E1SeLk3Y0eUU",
+        authDomain: "my--vhs-mixtape.firebaseapp.com",
+        projectId: "my--vhs-mixtape"
+      };
+      firebase.initializeApp(firebaseConfig);
+
+      const auth = firebase.auth();
+
+      document.getElementById('google-btn').addEventListener('click', () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider)
+          .then(result => result.user.getIdToken())
+          .then(idToken => {
+            // For Electron callback, redirect to custom URI
+            window.location.href = `mixtape://auth?token=${idToken}`;
+            // For web fallback, show token
+            document.getElementById('status').innerText = 'Signed in! Token: ' + idToken;
+          })
+          .catch(error => {
+            document.getElementById('status').innerText = error.message;
+          });
+      });
+    </script>
+</body>
+</html>
