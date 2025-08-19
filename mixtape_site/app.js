@@ -2,13 +2,13 @@
 
 // Your web app's Firebase configuration (Paste your *actual* config here)
 const firebaseConfig = {
-  apiKey: "AIzaSyC...", // YOURS!
-  authDomain: "my--vhs-mixtape.firebaseapp.com", // YOURS!
-  projectId: "my--vhs-mixtape", // YOURS!
-  storageBucket: "my--vhs-mixtape.appspot.com", // YOURS!
-  messagingSenderId: "...", // YOURS!
-  appId: "1:...", // YOURS!
-  measurementId: "G-..." // YOURS!
+  apiKey: "AIzaSyBr3GHLtueuC_cs9_Vrzv5E1SeLk3Y0eUU",
+  authDomain: "my--vhs-mixtape.firebaseapp.com",
+  projectId: "my--vhs-mixtape",
+  storageBucket: "my--vhs-mixtape.firebasestorage.app",
+  messagingSenderId: "484405101513",
+  appId: "1:484405101513:web:e0eed3c32c3a04cf079e18",
+  measurementId: "G-2WX3D1K8YV"
 };
 
 // Initialize Firebase
