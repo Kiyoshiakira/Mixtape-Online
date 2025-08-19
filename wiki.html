@@ -3,507 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Mixtape Wiki - Everything You Need to Know</title>
+    <title>My VHS Mixtape Wiki - Everything You Need to Know</title>
     <link rel="stylesheet" href="mixtape.css">
 </head>
 <body>
-    <header class="header">
+    <header>
         <div class="container logo-area">
-            <img src="assets/logo.png" alt="Playlist Master Logo" class="logo-img">
-            <div class="logo-title pixel-font">MY MIXTAPE WIKI</div>
+            <img src="assets/logo.png" alt="My Mixtape Logo" class="logo-img">
+            <div class="logo-title pixel-font">MY VHS MIXTAPE WIKI</div>
         </div>
-        <!-- ... Rest of header remains ... -->
+        <div class="tagline pixel-font">Everything you need to know about VHS Mixtape</div>
     </header>
-    <!-- ... Rest of the HTML remains the same, but remove the embedded <style> ... -->
-    <!-- You can add pixel-font class to h1, h2, etc. as well for a consistent look -->
-    <!-- ... -->
-</body>
-</html>            z-index: 100;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-        
-        .nav-links a:hover {
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            border: 1px solid #ffffff;
-            transform: translateY(-2px);
-        }
-        
-        /* Main Content */
-        .main-content {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 1.5rem;
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-            border: 1px solid rgba(255, 0, 255, 0.3);
-        }
-        
-        .sidebar h3 {
-            font-family: 'Orbitron', monospace;
-            color: #ff00ff;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        .sidebar ul {
-            list-style: none;
-        }
-        
-        .sidebar li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .sidebar a {
-            color: #cccccc;
-            text-decoration: none;
-            padding: 0.5rem;
-            display: block;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-        
-        .sidebar a:hover, .sidebar a.active {
-            background: rgba(255, 0, 255, 0.2);
-            color: #ffffff;
-            transform: translateX(5px);
-        }
-        
-        /* Content Area */
-        .content {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(0, 255, 255, 0.3);
-        }
-        
-        .content h1 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .content h2 {
-            font-family: 'Orbitron', monospace;
-            color: #00ffff;
-            margin: 2rem 0 1rem 0;
-            font-size: 1.8rem;
-            border-bottom: 2px solid #00ffff;
-            padding-bottom: 0.5rem;
-        }
-        
-        .content h3 {
-            color: #ff00ff;
-            margin: 1.5rem 0 0.5rem 0;
-            font-size: 1.3rem;
-        }
-        
-        .content p {
-            margin-bottom: 1rem;
-            color: #e0e0e0;
-        }
-        
-        .content ul, .content ol {
-            margin: 1rem 0 1rem 2rem;
-            color: #e0e0e0;
-        }
-        
-        .content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Special Sections */
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
-            border: 1px solid #ff00ff;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        
-        .feature-card {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid #00ffff;
-            border-radius: 10px;
-            padding: 1rem;
-            text-align: center;
-        }
-        
-        .feature-card h4 {
-            color: #00ffff;
-            margin-bottom: 0.5rem;
-        }
-        
-        .requirements-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-        
-        .requirements-table th,
-        .requirements-table td {
-            border: 1px solid #444;
-            padding: 0.75rem;
-            text-align: left;
-        }
-        
-        .requirements-table th {
-            background: rgba(255, 0, 255, 0.2);
-            color: #ff00ff;
-            font-weight: bold;
-        }
-        
-        .requirements-table tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                position: static;
-                order: 2;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .content h1 {
-                font-size: 2rem;
-            }
-        }
-        
-        /* Animations */
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px #ff00ff; }
-            50% { box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
-        }
-        
-        .glow {
-            animation: glow 2s infinite;
-        }
-    </style>
-</head>
-<body>
-    <header class="header">
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="nav-item pixel-font">Home</a>
+            <a href="features.html" class="nav-item pixel-font">Features</a>
+            <a href="#wiki-content" class="nav-item pixel-font" onclick="showWikiSection('wiki-content')">Wiki</a>
+            <a href="#community" class="nav-item pixel-font" onclick="showWikiSection('community')">Community</a>
+            <a href="#roadmap" class="nav-item pixel-font" onclick="showWikiSection('roadmap')">Roadmap</a>
+            <a href="#faq" class="nav-item pixel-font" onclick="showWikiSection('faq')">FAQ</a>
+            <a href="#contact" class="nav-item pixel-font" onclick="showWikiSection('contact')">Contact</a>
+        </div>
+    </nav>
+    <main>
         <div class="container">
-            <div class="header-content">
-                <div class="logo">MY MIXTAPE WIKI</div>
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="index.html">← Back to Main Site</a></li>
-                        <li><a href="#overview">Overview</a></li>
-                        <li><a href="#creator">About Creator</a></li>
-                        <li><a href="#features">Features</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="main-content">
-            <aside class="sidebar">
-                <h3>📖 Wiki Contents</h3>
+            <aside class="sidebar" style="margin-bottom:32px;">
+                <h3 class="pixel-font" style="color:#ffe66a">📖 Wiki Contents</h3>
                 <ul>
-                    <li><a href="#what-is-mixtape" class="active">What is My Mixtape?</a></li>
-                    <li><a href="#the-origin-story">The Origin Story</a></li>
-                    <li><a href="#meet-the-creator">Meet the Creator</a></li>
-                    <li><a href="#system-requirements">System Requirements</a></li>
-                    <li><a href="#upcoming-features">Upcoming Features</a></li>
-                    <li><a href="#vr-experience">VR Experience</a></li>
-                    <li><a href="#mobile-companion">Mobile Companion</a></li>
-                    <li><a href="#community">Community</a></li>
-                    <li><a href="#roadmap">Development Roadmap</a></li>
-                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#what-is-mixtape" class="pixel-font">What is My Mixtape?</a></li>
+                    <li><a href="#the-origin-story" class="pixel-font">The Origin Story</a></li>
+                    <li><a href="#meet-the-creator" class="pixel-font">Meet the Creator</a></li>
+                    <li><a href="#system-requirements" class="pixel-font">System Requirements</a></li>
+                    <li><a href="#upcoming-features" class="pixel-font">Upcoming Features</a></li>
+                    <li><a href="#vr-experience" class="pixel-font">VR Experience</a></li>
+                    <li><a href="#mobile-companion" class="pixel-font">Mobile Companion</a></li>
+                    <li><a href="#community" class="pixel-font">Community</a></li>
+                    <li><a href="#roadmap" class="pixel-font">Development Roadmap</a></li>
+                    <li><a href="#faq" class="pixel-font">FAQ</a></li>
                 </ul>
             </aside>
-
-            <main class="content">
-                <section id="what-is-mixtape">
-                    <h1>🎵 What is My Mixtape?</h1>
-                    
-                    <div class="highlight-box">
-                        <p><strong>My Mixtape</strong> is a revolutionary video streaming organizer that brings back the nostalgic feeling of creating and sharing VHS mixtapes, but reimagined for the digital age with cutting-edge VR technology, packaged with software as well as an app.</p>
+            <section id="wiki-content" class="section active">
+                <h1 class="pixel-font" id="what-is-mixtape">🎵 What is My Mixtape?</h1>
+                <div class="highlight-box pixel-font">
+                    <p><strong>My Mixtape</strong> is a revolutionary video streaming organizer that brings back the nostalgic feeling of creating and sharing VHS mixtapes, but reimagined for the digital age with cutting-edge VR technology, packaged with software as well as an app.</p>
+                </div>
+                <p class="pixel-font">Remember TV when you get that long needed day off from school or work? You’d pop a blank VHS in the VCR, record your favorite shows, and make your own epic mixes — “Favorite Nicktoons,” “CN Awesomeness!” — complete with a hand-written sticker. Now <strong>My Mixtape</strong> brings that magic back! Build your own playlists, or let the app shuffle them like old-school channel surfing, all with that classic VCR-recorded vibe.</p>
+                <h2 class="pixel-font" id="the-origin-story">🎬 The Origin Story</h2>
+                <p class="pixel-font">The idea for <strong>My Mixtape</strong> was born from a simple frustration: <em>modern video streaming, although useful, can sometimes feel repetitive and cold</em>. While we have access to millions of movies and TV series, we've lost that crafty touch, the curation, that true nostalgic feel of cable TV and your handy VCR and the feel of creating awesome Mixtapes.</p>
+                <p class="pixel-font">The creator realized that even with access to Netflix, Hulu, and Disney+, we’d lost the true TV-watching experience — the kind where you sink into the couch after a long day and get The Simpsons, Family Guy, and Futurama all in a row. Instead, modern streaming left us binging the same show for hours, missing that mix-and-surprise magic.</p>
+                <div class="highlight-box pixel-font">
+                    <h3 class="pixel-font">💡 The "Aha!" Moment</h3>
+                    <p>What if we could combine the personal touch of VHS mixtapes with the convenience of modern streaming, all wrapped in an immersive VR experience that makes TV watching feel magical again?</p>
+                </div>
+                <h2 class="pixel-font" id="meet-the-creator">👨‍💻 Meet the Creator</h2>
+                <p class="pixel-font">My Mixtape is the brainchild of a passionate movie and TV buff, as well as a technology enthusiast who believes that the best innovations come from solving personal problems. With no formal coding background, this project represents the power of vision, determination, and modern AI-assisted development.</p>
+                <h3 class="pixel-font">The Vision</h3>
+                <p class="pixel-font">The creator's mission is simple: <strong>Bring back that family full of couch potatoes feel</strong>. In this new world of horrible playlist creation and customization and endless scrolling, My Mixtape aims to bring back the box TV element to digital streaming.</p>
+                <h3 class="pixel-font">Development Philosophy</h3>
+                <ul>
+                    <li class="pixel-font"><strong>User-First Design:</strong> Every feature is built with the watcher's experience in mind</li>
+                    <li class="pixel-font"><strong>Nostalgia Meets Innovation:</strong> Combining the best of VHS viewing with cutting-edge technology</li>
+                    <li class="pixel-font"><strong>Community-Driven:</strong> Features and improvements based on real user feedback</li>
+                    <li class="pixel-font"><strong>Accessibility:</strong> Making VR and couch potatoness available to everyone</li>
+                </ul>
+                <h2 class="pixel-font" id="system-requirements">⚙️ System Requirements</h2>
+                <h3 class="pixel-font">VR Experience (Full Features)</h3>
+                <table class="requirements-table">
+                    <thead>
+                        <tr>
+                            <th class="pixel-font">Component</th>
+                            <th class="pixel-font">Minimum</th>
+                            <th class="pixel-font">Recommended</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pixel-font"><strong>VR Headset</strong></td>
+                            <td class="pixel-font">Oculus Quest 2, PICO 4</td>
+                            <td class="pixel-font">Meta Quest 3, Apple Vision Pro</td>
+                        </tr>
+                        <tr>
+                            <td class="pixel-font"><strong>Storage</strong></td>
+                            <td class="pixel-font">2GB free space</td>
+                            <td class="pixel-font">5GB free space</td>
+                        </tr>
+                        <tr>
+                            <td class="pixel-font"><strong>Internet</strong></td>
+                            <td class="pixel-font">10 Mbps</td>
+                            <td class="pixel-font">25+ Mbps for 4K environments</td>
+                        </tr>
+                        <tr>
+                            <td class="pixel-font"><strong>Streaming Service</strong></td>
+                            <td class="pixel-font">Netflix, Disney+, PeacockTV, Paramount+, Crunchroll, HBOMax, AppleTV+</td>
+                            <td class="pixel-font">Premium subscriptions necessary</td>
+                        </tr>
+                        <tr>
+                            <td class="pixel-font"></td>
+                            <td class="pixel-font">TubiTV, PlutoTV, Popcornflix, Crackle, The Roku Channel</td>
+                            <td class="pixel-font">Premium subscriptions not necessary</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 class="pixel-font">Mobile Companion App</h3>
+                <ul>
+                    <li class="pixel-font"><strong>iOS:</strong> iPhone 12 or newer, iOS 15+</li>
+                    <li class="pixel-font"><strong>Android:</strong> Android 10+, 4GB RAM minimum</li>
+                    <li class="pixel-font"><strong>Storage:</strong> 500MB free space</li>
+                </ul>
+                <h3 class="pixel-font">Desktop/Web Version</h3>
+                <ul>
+                    <li class="pixel-font"><strong>Browser:</strong> Chrome 90+, Firefox 88+, Safari 14+, Edge 90+</li>
+                    <li class="pixel-font"><strong>RAM:</strong> 4GB minimum, 8GB recommended</li>
+                    <li class="pixel-font"><strong>Internet:</strong> 5 Mbps for streaming</li>
+                </ul>
+                <h2 class="pixel-font" id="upcoming-features">🚀 Upcoming Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">📼</span>
+                        <h3 class="pixel-font">VHS Tape Stylized Playlists</h3>
+                        <p class="pixel-font">Browse your playlists in immersive vintage VHS shelf environments</p>
                     </div>
-
-                    <p>Remember TV when you get that long needed day off from school or work? You’d pop a blank VHS in the VCR, record your favorite shows, and make your own epic mixes — “Favorite Nicktoons,” “CN Awesomeness!” — complete with a hand-written sticker. Now <strong>My Mixtape<strong/> brings that magic back! Build your own playlists, or let the app shuffle them like old-school channel surfing, all with that classic VCR-recorded vibe.</p>
-
-                    <h2 id="the-origin-story">🎬 The Origin Story</h2>
-                    
-                    <p>The idea for <strong>My Mixtape</strong> was born from a simple frustration: <em>modern video streaming, although useful, can sometimes feel repetitive and cold</em>. While we have access to millions of movies and TV series, we've lost that crafty touch, the curation, that true nostalgic feel of cable TV and your handy VCR and the feel of creating awesome Mixtapes.</p>
-
-                    <p>The creator realized that even with access to Netflix, Hulu, and Disney+, we’d lost the true TV-watching experience — the kind where you sink into the couch after a long day and get The Simpsons, Family Guy, and Futurama all in a row. Instead, modern streaming left us binging the same show for hours, missing that mix-and-surprise magic.</p>
-
-                    <div class="highlight-box">
-                        <h3>💡 The "Aha!" Moment</h3>
-                        <p>What if we could combine the personal touch of VHS mixtapes with the convenience of modern streaming, all wrapped in an immersive VR experience that makes TV watching feel magical again?</p>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎵</span>
+                        <h3 class="pixel-font">AI Playlist Discovery</h3>
+                        <p class="pixel-font">Smart recommendations based on your playlist creation patterns</p>
                     </div>
-
-                    <h2 id="meet-the-creator">👨‍💻 Meet the Creator</h2>
-                    
-                    <p>My Mixtape is the brainchild of a passionate movie and TV buff, as well as a technology enthusiast who believes that the best innovations come from solving personal problems. With no formal coding background, this project represents the power of vision, determination, and modern AI-assisted development.</p>
-
-                    <h3>The Vision</h3>
-                    <p>The creator's mission is simple: <strong>Bring back that family full of couch potatoes feel</strong>. In this new world of horrible playlist creation and customization and endless scrolling, My Mixtape aims to bring back the box TV element to digital streaming.</p>
-
-                    <h3>Development Philosophy</h3>
-                    <ul>
-                        <li><strong>User-First Design:</strong> Every feature is built with the watcher's experience in mind</li>
-                        <li><strong>Nostalgia Meets Innovation:</strong> Combining the best of VHS viewing with cutting-edge technology</li>
-                        <li><strong>Community-Driven:</strong> Features and improvements based on real user feedback</li>
-                        <li><strong>Accessibility:</strong> Making VR and couch potatoness available to everyone</li>
-                    </ul>
-
-                    <h2 id="system-requirements">⚙️ System Requirements</h2>
-
-                    <h3>VR Experience (Full Features)</h3>
-                    <table class="requirements-table">
-                        <thead>
-                            <tr>
-                                <th>Component</th>
-                                <th>Minimum</th>
-                                <th>Recommended</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>VR Headset</strong></td>
-                                <td>Oculus Quest 2, PICO 4</td>
-                                <td>Meta Quest 3, Apple Vision Pro</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Storage</strong></td>
-                                <td>2GB free space</td>
-                                <td>5GB free space</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Internet</strong></td>
-                                <td>10 Mbps</td>
-                                <td>25+ Mbps for 4K environments</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Streaming Service</strong></td>
-                                <td>Netflix, Disney+, PeacockTV, Paramount+, Crunchroll, HBOMax, AppleTV+</td>
-                                <td>Premium subscriptions necessary</td>
-                                <td>TubiTV, PlutoTV, Popcornflix, Crackle, The Roku Channel</td>
-                                <td>Premium subscriptions not necessary</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h3>Mobile Companion App</h3>
-                    <ul>
-                        <li><strong>iOS:</strong> iPhone 12 or newer, iOS 15+</li>
-                        <li><strong>Android:</strong> Android 10+, 4GB RAM minimum</li>
-                        <li><strong>Storage:</strong> 500MB free space</li>
-                    </ul>
-
-                    <h3>Desktop/Web Version</h3>
-                    <ul>
-                        <li><strong>Browser:</strong> Chrome 90+, Firefox 88+, Safari 14+, Edge 90+</li>
-                        <li><strong>RAM:</strong> 4GB minimum, 8GB recommended</li>
-                        <li><strong>Internet:</strong> 5 Mbps for streaming</li>
-                    </ul>
-
-                    <h2 id="upcoming-features">🚀 Upcoming Features</h2>
-
-                    <div class="feature-grid">
-                        <div class="feature-card glow">
-                            <h4>🎪 VHS Tape Stylized Playlists</h4>
-                            <p>Browse your playlists in immersive vintage VHS shelf environments</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>🎵 AI Playlist Discovery</h4>
-                            <p>Smart recommendations based on your playlist creation patterns</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>👥 Social watching Rooms</h4>
-                            <p>Watch your mixtapes together with friends in VR</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>🎨 Custom Environments</h4>
-                            <p>Design your own watching spaces and share them</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>📱 Advanced Mobile Controls</h4>
-                            <p>Full remote control of your PC and VR experience</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>🎤 Voice Commands</h4>
-                            <p>Control your lists with natural voice interactions</p>
-                        </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">👥</span>
+                        <h3 class="pixel-font">Social watching Rooms</h3>
+                        <p class="pixel-font">Watch your mixtapes together with friends in VR</p>
                     </div>
-
-                    <h2 id="vr-experience">🥽 The VR Experience</h2>
-
-                    <h3>Immersive Environments</h3>
-                    <p>Step into carefully crafted virtual spaces designed to enhance your couch potato vibes:</p>
-                    <ul>
-                        <li><strong>Retro Bedroom:</strong> A cozy 80s bedroom complete with vintage posters and neon lighting</li>
-                        <li><strong>Neon Cityscape:</strong> A cyberpunk-inspired urban environment with dynamic lighting</li>
-                        <li><strong>Vinyl Paradise:</strong> A collector's dream TV room with hundreds of tapes</li>
-                        <li><strong>Concert Hall:</strong> Dads, experience your mixtapes in a man cave setting</li>
-                        <li><strong>Beach Sunset:</strong> Relax with your friends in a theater-like environment</li>
-                    </ul>
-
-                    <h3>Interactive Elements</h3>
-                    <ul>
-                        <li>Physical mixtape cases you can hold and examine</li>
-                        <li>Vintage television equipment that responds to your touch</li>
-                        <li>Dynamic visualizations that react to your shows</li>
-                        <li>Customizable lighting and atmosphere controls</li>
-                    </ul>
-
-                    <h2 id="mobile-companion">📱 Mobile Companion App</h2>
-
-                    <p>Your phone becomes the ultimate remote control for your VR experience:</p>
-
-                    <h3>Core Features</h3>
-                    <ul>
-                        <li><strong>Remote Control:</strong> Play, pause, skip, and adjust volume</li>
-                        <li><strong>Playlist Management:</strong> Create and edit mixtapes on the go</li>
-                        <li><strong>Environment Selection:</strong> Switch VR environments from your phone</li>
-                        <li><strong>Social Sharing:</strong> Share your mixtapes with friends instantly</li>
-                    </ul>
-
-                    <h2 id="community">🌟 Community Features</h2>
-
-                    <h3>Sharing & Discovery</h3>
-                    <ul>
-                        <li><strong>Mixtape Gallery:</strong> Browse community-created playlists</li>
-                        <li><strong>Curator Profiles:</strong> Follow your favorite mixtape creators</li>
-                        <li><strong>Themed Collections:</strong> Discover mixtapes for every mood and occasion</li>
-                        <li><strong>Collaborative Playlists:</strong> Create mixtapes with friends</li>
-                    </ul>
-
-                    <h3>Social Features</h3>
-                    <ul>
-                        <li>Like, comment, and share mixtapes</li>
-                        <li>Follow friends and see their latest creations</li>
-                        <li>Join watching parties in VR</li>
-                        <li>Participate in weekly mixtape challenges</li>
-                    </ul>
-
-                    <h2 id="roadmap">🗺️ Development Roadmap</h2>
-
-                    <h3>Phase 1: Foundation (Q1 2025)</h3>
-                    <ul>
-                        <li>✅ Core VR experience with basic environments</li>
-                        <li>✅ Mobile companion app</li>
-                        <li>✅ Stream site integration</li>
-                        <li>🔄 Beta testing program launch</li>
-                    </ul>
-
-                    <h3>Phase 2: Social Features (Q2 2025)</h3>
-                    <ul>
-                        <li>🔄 Community mixtape sharing</li>
-                        <li>⏳ Social watching rooms</li>
-                        <li>⏳ User profiles and following system</li>
-                        <li>⏳ Collaborative playlist creation</li>
-                    </ul>
-
-                    <h3>Phase 3: Advanced Features (Q3 2026)</h3>
-                    <ul>
-                        <li>⏳ AI-powered URL discovery</li>
-                        <li>⏳ Custom environment creator</li>
-                        <li>⏳ Voice command integration</li>
-                        <li>⏳ Advanced TV audio visualization</li>
-                    </ul>
-
-                    <h3>Phase 4: Platform Expansion (Q4 2026)</h3>
-                    <ul>
-                        <li>⏳ Additional streaming service integrations</li>
-                        <li>⏳ Desktop standalone application</li>
-                        <li>⏳ Smart TV and gaming console support</li>
-                        <li>⏳ API for third-party developers</li>
-                    </ul>
-
-                    <h2 id="faq">❓ Frequently Asked Questions</h2>
-
-                    <h3>Do I need a VR headset to use My Mixtape?</h3>
-                    <p>No! While the full experience is designed for VR, My Mixtape also works on desktop, with controls on phones and tablets as well. The VR experience is the premium way to enjoy the app, but you can create your mixtapes on any device.</p>
-
-                    <h3>Which streaming services are supported?</h3>
-                    <p>Currently, we support all streaming services that take you the video with a direct link.</p>
-
-                    <h3>Is My Mixtape free to use?</h3>
-                    <p>My Mixtape offers a free tier with basic features and limited VR environments. Premium subscriptions unlock additional environments, advanced features, and unlimited mixtape creation.</p>
-
-                    <h3>Can I use my existing playlists?</h3>
-                    <p>Yes! My Mixtape can import your existing playlists from .txt files and convert them into a mixtape.</p>
-
-                    <h3>How do I share my mixtapes?</h3>
-                    <p>You can share mixtapes through the app's social features, generate shareable links, or export them back to your streaming service as regular playlists.</p>
-
-                    <h3>What makes this different from regular streaming apps?</h3>
-                    <p>My Mixtape focuses on the <em>set top box complete with VCR experience</em> of TV watching. It's about family nostalgia, friends watching their favorite shows during sleepovers, that comfortable feeling of the relaxing TV keeping you company while you're sick, curation, and creating memorable moments with your friends again, enhanced by immersive VR environments.</p>
-
-                    <div class="highlight-box">
-                        <h3>🎯 Ready to Start Your Mixtape Journey?</h3>
-                        <p>Join our beta program and be among the first to experience the future of mixtape streaming. Sign up at <strong>mixtape.online</strong> to get early access and help shape the development of My Mixtape!</p>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎨</span>
+                        <h3 class="pixel-font">Custom Environments</h3>
+                        <p class="pixel-font">Design your own watching spaces and share them</p>
                     </div>
-                </section>
-            </main>
+                    <div class="feature-card">
+                        <span class="feature-icon">📱</span>
+                        <h3 class="pixel-font">Advanced Mobile Controls</h3>
+                        <p class="pixel-font">Full remote control of your PC and VR experience</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎤</span>
+                        <h3 class="pixel-font">Voice Commands</h3>
+                        <p class="pixel-font">Control your lists with natural voice interactions</p>
+                    </div>
+                </div>
+                <h2 class="pixel-font" id="vr-experience">🥽 The VR Experience</h2>
+                <h3 class="pixel-font">Immersive Environments</h3>
+                <ul>
+                    <li class="pixel-font"><strong>Retro Bedroom:</strong> A cozy 80s bedroom complete with vintage posters and neon lighting</li>
+                    <li class="pixel-font"><strong>Neon Cityscape:</strong> A cyberpunk-inspired urban environment with dynamic lighting</li>
+                    <li class="pixel-font"><strong>Vinyl Paradise:</strong> A collector's dream TV room with hundreds of tapes</li>
+                    <li class="pixel-font"><strong>Concert Hall:</strong> Dads, experience your mixtapes in a man cave setting</li>
+                    <li class="pixel-font"><strong>Beach Sunset:</strong> Relax with your friends in a theater-like environment</li>
+                </ul>
+                <h3 class="pixel-font">Interactive Elements</h3>
+                <ul>
+                    <li class="pixel-font">Physical mixtape cases you can hold and examine</li>
+                    <li class="pixel-font">Vintage television equipment that responds to your touch</li>
+                    <li class="pixel-font">Dynamic visualizations that react to your shows</li>
+                    <li class="pixel-font">Customizable lighting and atmosphere controls</li>
+                </ul>
+                <h2 class="pixel-font" id="mobile-companion">📱 Mobile Companion App</h2>
+                <p class="pixel-font">Your phone becomes the ultimate remote control for your VR experience:</p>
+                <h3 class="pixel-font">Core Features</h3>
+                <ul>
+                    <li class="pixel-font"><strong>Remote Control:</strong> Play, pause, skip, and adjust volume</li>
+                    <li class="pixel-font"><strong>Playlist Management:</strong> Create and edit mixtapes on the go</li>
+                    <li class="pixel-font"><strong>Environment Selection:</strong> Switch VR environments from your phone</li>
+                    <li class="pixel-font"><strong>Social Sharing:</strong> Share your mixtapes with friends instantly</li>
+                </ul>
+                <h2 class="pixel-font" id="community">🌟 Community Features</h2>
+                <h3 class="pixel-font">Sharing & Discovery</h3>
+                <ul>
+                    <li class="pixel-font"><strong>Mixtape Gallery:</strong> Browse community-created playlists</li>
+                    <li class="pixel-font"><strong>Curator Profiles:</strong> Follow your favorite mixtape creators</li>
+                    <li class="pixel-font"><strong>Themed Collections:</strong> Discover mixtapes for every mood and occasion</li>
+                    <li class="pixel-font"><strong>Collaborative Playlists:</strong> Create mixtapes with friends</li>
+                </ul>
+                <h3 class="pixel-font">Social Features</h3>
+                <ul>
+                    <li class="pixel-font">Like, comment, and share mixtapes</li>
+                    <li class="pixel-font">Follow friends and see their latest creations</li>
+                    <li class="pixel-font">Join watching parties in VR</li>
+                    <li class="pixel-font">Participate in weekly mixtape challenges</li>
+                </ul>
+                <h2 class="pixel-font" id="roadmap">🗺️ Development Roadmap</h2>
+                <h3 class="pixel-font">Phase 1: Foundation (Q1 2025)</h3>
+                <ul>
+                    <li class="pixel-font">✅ Core VR experience with basic environments</li>
+                    <li class="pixel-font">✅ Mobile companion app</li>
+                    <li class="pixel-font">✅ Stream site integration</li>
+                    <li class="pixel-font">🔄 Beta testing program launch</li>
+                </ul>
+                <h3 class="pixel-font">Phase 2: Social Features (Q2 2025)</h3>
+                <ul>
+                    <li class="pixel-font">🔄 Community mixtape sharing</li>
+                    <li class="pixel-font">⏳ Social watching rooms</li>
+                    <li class="pixel-font">⏳ User profiles and following system</li>
+                    <li class="pixel-font">⏳ Collaborative playlist creation</li>
+                </ul>
+                <h3 class="pixel-font">Phase 3: Advanced Features (Q3 2026)</h3>
+                <ul>
+                    <li class="pixel-font">⏳ AI-powered URL discovery</li>
+                    <li class="pixel-font">⏳ Custom environment creator</li>
+                    <li class="pixel-font">⏳ Voice command integration</li>
+                    <li class="pixel-font">⏳ Advanced TV audio visualization</li>
+                </ul>
+                <h3 class="pixel-font">Phase 4: Platform Expansion (Q4 2026)</h3>
+                <ul>
+                    <li class="pixel-font">⏳ Additional streaming service integrations</li>
+                    <li class="pixel-font">⏳ Desktop standalone application</li>
+                    <li class="pixel-font">⏳ Smart TV and gaming console support</li>
+                    <li class="pixel-font">⏳ API for third-party developers</li>
+                </ul>
+                <h2 class="pixel-font" id="faq">❓ Frequently Asked Questions</h2>
+                <h3 class="pixel-font">Do I need a VR headset to use My Mixtape?</h3>
+                <p class="pixel-font">No! While the full experience is designed for VR, My Mixtape also works on desktop, with controls on phones and tablets as well. The VR experience is the premium way to enjoy the app, but you can create your mixtapes on any device.</p>
+                <h3 class="pixel-font">Which streaming services are supported?</h3>
+                <p class="pixel-font">Currently, we support all streaming services that take you the video with a direct link.</p>
+                <h3 class="pixel-font">Is My Mixtape free to use?</h3>
+                <p class="pixel-font">My Mixtape offers a free tier with basic features and limited VR environments. Premium subscriptions unlock additional environments, advanced features, and unlimited mixtape creation.</p>
+                <h3 class="pixel-font">Can I use my existing playlists?</h3>
+                <p class="pixel-font">Yes! My Mixtape can import your existing playlists from .txt files and convert them into a mixtape.</p>
+                <h3 class="pixel-font">How do I share my mixtapes?</h3>
+                <p class="pixel-font">You can share mixtapes through the app's social features, generate shareable links, or export them back to your streaming service as regular playlists.</p>
+                <h3 class="pixel-font">What makes this different from regular streaming apps?</h3>
+                <p class="pixel-font">My Mixtape focuses on the <em>set top box complete with VCR experience</em> of TV watching. It's about family nostalgia, friends watching their favorite shows during sleepovers, that comfortable feeling of the relaxing TV keeping you company while you're sick, curation, and creating memorable moments with your friends again, enhanced by immersive VR environments.</p>
+                <div class="highlight-box pixel-font">
+                    <h3 class="pixel-font">🎯 Ready to Start Your Mixtape Journey?</h3>
+                    <p class="pixel-font">Join our beta program and be among the first to experience the future of mixtape streaming. Sign up at <strong>mixtape.online</strong> to get early access and help shape the development of My Mixtape!</p>
+                </div>
+            </section>
         </div>
-    </div>
-
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My VHS Mixtape. Bringing back the magic of VHS collections.</p>
+            <div class="social-links">
+                <a href="#">📧</a>
+                <a href="#">💬</a>
+                <a href="#">🐦</a>
+                <a href="#">📘</a>
+            </div>
+        </div>
+    </footer>
     <script>
-        // Smooth scrolling for navigation links
+        // Smooth scroll for sidebar links and nav
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -517,20 +264,17 @@
             });
         });
 
-        // Update active sidebar link based on scroll position
+        // Highlight active sidebar link
         window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id], h2[id]');
+            const sections = document.querySelectorAll('h2[id], h1[id]');
             const sidebarLinks = document.querySelectorAll('.sidebar a');
-            
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
                 if (scrollY >= (sectionTop - 200)) {
                     current = section.getAttribute('id');
                 }
             });
-
             sidebarLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${current}`) {
@@ -538,20 +282,6 @@
                 }
             });
         });
-
-        // Add some interactive elements
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.02)';
-                this.style.transition = 'all 0.3s ease';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96bc6bf33752f4e8',t:'MTc1NDYyODkyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
-
-
