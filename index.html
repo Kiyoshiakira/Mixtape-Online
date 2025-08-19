@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Mixtape - Relive the Magic of VHS Collections</title>
+    <title>My VHS Mixtape - Relive the Magic of VHS Collections</title>
     <link rel="stylesheet" href="mixtape.css">
 </head>
 <body>
     <header>
         <div class="container logo-area">
             <img src="assets/logo.png" alt="My Mixtape Logo" class="logo-img">
-            <div class="logo-title pixel-font">MY MIXTAPE</div>
+            <div class="logo-title pixel-font">MY VHS MIXTAPE</div>
         </div>
         <div class="tagline pixel-font">Relive the Magic of VHS Collections in VR</div>
     </header>
     <nav>
         <div class="container nav-container">
-            <a href="#" class="nav-item pixel-font" onclick="showSection('home')">Home</a>
-            <a href="#" class="nav-item pixel-font" onclick="showSection('download')">Download</a>
-            <a href="#" class="nav-item pixel-font" onclick="showSection('features')">Features</a>
-            <a href="#" class="nav-item pixel-font" onclick="showSection('community')">Community</a>
-            <a href="#" class="nav-item pixel-font" onclick="showSection('roadmap')">Roadmap</a>
-            <a href="#" class="nav-item pixel-font" onclick="showSection('contact')">Contact</a>
+            <a href="index.html" class="nav-item pixel-font">Home</a>
+            <a href="#download" class="nav-item pixel-font" onclick="showSection('download')">Download</a>
+            <a href="features.html" class="nav-item pixel-font">Features</a>
+            <a href="#community" class="nav-item pixel-font" onclick="showSection('community')">Community</a>
+            <a href="#roadmap" class="nav-item pixel-font" onclick="showSection('roadmap')">Roadmap</a>
+            <a href="#contact" class="nav-item pixel-font" onclick="showSection('contact')">Contact</a>
             <a href="wiki.html" class="nav-item pixel-font">Wiki</a>
         </div>
     </nav>
@@ -30,43 +30,41 @@
             <section id="home" class="section active">
                 <h1 class="pixel-font">Welcome to My Mixtape</h1>
                 <p class="tagline pixel-font">Transform your streaming experience into a nostalgic VHS collection!</p>
-                <a href="#" class="cta-button pixel-font" onclick="showSection('download')">Download Now</a>
+                <a href="#download" class="cta-button pixel-font" onclick="showSection('download')">Download Now</a>
             </section>
             <section id="download" class="section">
-                <h2 class="pixel-font">Download My Mixtape</h2>
+                <h2 class="pixel-font">Download My VHS Mixtape</h2>
                 <p>Get the latest version for your platform:</p>
                 <a href="#" class="cta-button pixel-font">Windows</a>
                 <a href="#" class="cta-button pixel-font">Mac</a>
                 <a href="#" class="cta-button pixel-font">Linux</a>
             </section>
-            <section id="features" class="section">
-                <h2 class="pixel-font">Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <span class="feature-icon">📼</span>
-                        <h3 class="pixel-font">Create Playlists</h3>
-                        <p>Build custom VHS-style mixtapes with streaming URLs</p>
-                    </div>
-                    <!-- More feature cards... -->
-                </div>
+            <section id="download-ext" class="section">
+                <h2 class="pixel-font">Download VHS Mixtape Extension</h2>
+                <p>Get the latest version for your browser:</p>
+                <a href="#" class="cta-button pixel-font">Chrome</a>
+                <a href="#" class="cta-button pixel-font">Firefox</a>
+                <a href="#" class="cta-button pixel-font">Edge</a>
             </section>
             <section id="community" class="section">
                 <h2 class="pixel-font">Community</h2>
-                <p>Share playlists, join Discord, and help develop My Mixtape!</p>
+                <p>Join our Discord to chat, share Mixtapes, and help develop the apps</p>
+                <a href="https://discord.gg/h6WdsZTHE2" class="cta-button pixel-font">Discord</a>
             </section>
             <section id="roadmap" class="section">
                 <h2 class="pixel-font">Roadmap</h2>
                 <p>See what's coming next for My Mixtape.</p>
+                <a href="https://github.com/Kiyoshiakira/Mixtape-Online/blob/main/ROADMAP.md" class="cta-button pixel-font">Roadmap</a>
             </section>
-            <section id="contact" class="section">
-                <h2 class="pixel-font">Contact</h2>
-                <form>
-                    <input type="text" placeholder="Your Name">
-                    <input type="email" placeholder="Your Email">
-                    <textarea placeholder="Your Message"></textarea>
-                    <button type="submit" class="submit-btn pixel-font">Send</button>
-                </form>
-            </section>
+				<section id="contact" class="section">
+					<h2 class="pixel-font">Contact</h2>
+					<form class="contact-form">
+						<input type="text" placeholder="Your Name">
+						<input type="email" placeholder="Your Email">
+						<textarea placeholder="Your Message"></textarea>
+						<button type="submit" class="submit-btn pixel-font">Send</button>
+					</form>
+				</section>
         </div>
     </main>
     <footer>
@@ -83,8 +81,17 @@
     <script>
     function showSection(id) {
         document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
+        var section = document.getElementById(id);
+        if (section) section.classList.add('active');
+        // Scroll to section for smooth UX
+        if (section) section.scrollIntoView({ behavior: "smooth" });
     }
+
+    // Optional: activate section if navigated with hash
+    window.addEventListener('DOMContentLoaded', function() {
+        const hash = window.location.hash.replace('#', '');
+        if (hash) showSection(hash);
+    });
     </script>
 </body>
 </html>
