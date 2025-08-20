@@ -137,6 +137,17 @@ Organized by platform for clarity and future planning.
 - Global/community-accessible scanner (future, via web API/database)
 - Curated, complete playlists with collaborative curation
 
+## AI Chat Assistant — Powered by Llama 4
+
+- **State-of-the-art conversational AI** is integrated into watch-together rooms and playlist management.
+- Users can interact via chat to:
+  - Build playlists by asking for shows or episodes (“Add the latest episode of The Bear to my playlist.”)
+  - Discover recommendations and automate episode selection.
+  - Control playback (“Start my mixtape,” “Skip to the next episode,” etc.)
+  - Get help, moderation, and community support.
+- The assistant understands natural language requests and automates playlist creation, episode management, and more.
+- **Learn more:** [AI Chat Assistant Features](AI-Chat-Assistant.md)
+
 ---
 
 See [ROADMAP.md](ROADMAP.md) for timeline and milestones!
