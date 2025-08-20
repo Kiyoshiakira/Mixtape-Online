@@ -1,20 +1,28 @@
-const { db, auth, firebase } = require('./firebase');
+const { db, auth } = require('./firebase');
 const fs = require('fs');
 const path = require('path');
 const playlistFile = path.join(__dirname, '..', 'playlist.json');
 const errorLogFile = path.join(__dirname, '..', 'error.log');
+const { ipcRenderer, shell } = require('electron');
 
-const { GoogleAuthProvider, signInWithPopup } = require("firebase/auth");
+// --- GOOGLE SIGN-IN (Electron handoff flow only) ---
+// Listen for token from main process (after browser sign-in)
+ipcRenderer.on('google-token', async (event, token) => {
+  try {
+    await auth.signInWithCustomToken(token);
+    setAuthStatus("Signed in with Google!", "success");
+  } catch (err) {
+    setAuthStatus("Google sign-in failed: " + err.message, "");
+    logError("Google sign-in error", err);
+  }
+});
 
-const { shell } = require('electron');
-
-// Replace Google button handler:
+// Google button: open browser to web sign-in (no popup in Electron)
 document.getElementById('google-btn').addEventListener('click', () => {
   shell.openExternal('https://mymixtape.online/auth?platform=electron');
 });
 
-document.getElementById('google-btn').addEventListener('click', googleSignIn);
-
+// --- AUTH STATE & UI ---
 auth.onAuthStateChanged((user) => {
   if (user) {
     let profileHtml = "";
