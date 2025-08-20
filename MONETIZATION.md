@@ -1,37 +1,47 @@
-# Monetization Strategy — Playlist Master & Mixtape Watch Together
+# Monetization & Sponsorship Model
 
-We believe in open source and free community tools, but to keep building and improving, we need sustainable funding.  
-Here’s how we plan to do it:
-
-## 1. Freemium Model
-
-- **Free Tier:**  
-  - All core features, personal mixtapes, and basic watch together rooms
-- **Premium Tier:**  
-  - Advanced sync (larger rooms, exclusive chat/avatars, VR enhancements)
-  - Curated “official” mixtapes
-  - Enhanced automation (bulk import, notifications)
-  - Custom branding/themes
-
-## 2. Hosted SaaS
-
-- **Self-host:** Free and open source
-- **Official Hosted Service:**  
-  - Paid accounts for convenience, reliability, and premium features
-
-## 3. Donations & Sponsorships
-
-- GitHub Sponsors, Patreon, Ko-fi
-- Early supporter perks, custom badges
-
-## 4. Marketplace (Future)
-
-- Community-curated mixtape marketplace (creators can get tips, you get a small cut)
-
-## 5. Consulting & Customization
-
-- Offer branded setups for organizations, VR arcades, or clubs
+Mixtape-Online aims to foster a sustainable ecosystem that supports creators, the platform, and the streaming services we work with.
 
 ---
 
-*We’re committed to keeping core features open and free. Paid features help us grow, support hosting, and reward contributors.*
+## How We Generate Revenue
+
+### 1. **Branded VR Unlockables & Sponsorships**
+
+- **Exclusive Props & Rooms:**  
+  Users unlock themed 3D models, virtual rooms, and avatars by watching shows from supported streaming platforms.
+- **Official Partnerships:**  
+  Streaming services can sponsor unlockables, promote new releases, and offer special rewards to subscribing users.
+- **Affiliate Offers:**  
+  Users who subscribe to a streaming service via Mixtape-Online receive bonus unlockables and perks.
+
+### 2. **Marketplace for Premium Customizations**
+
+- Users can purchase premium virtual items, themes, or rooms.
+- Revenue is shared with content creators and sponsors.
+
+### 3. **Affiliate Subscriptions**
+
+- Mixtape-Online can partner with streaming services for referral bonuses when users sign up via our platform.
+
+---
+
+## Why Streaming Companies Should Sponsor Us
+
+- **Increased Subscriptions:**  
+  Fans may subscribe to streaming platforms in order to unlock Mixtape-exclusive VR items.
+- **Brand Visibility:**  
+  Direct engagement with fans in a fun, interactive environment.
+- **Promotional Opportunities:**  
+  Launch new shows, drive engagement, and reward loyal viewers.
+- **Data & Insights:**  
+  Non-personal analytics on fan engagement, popular shows, and unlock trends.
+
+---
+
+## Get Involved
+
+Interested in sponsoring Mixtape-Online or partnering for exclusive content?  
+Contact us at <project-email> or open a [GitHub issue](https://github.com/Kiyoshiakira/Mixtape-Online/issues).
+
+---
