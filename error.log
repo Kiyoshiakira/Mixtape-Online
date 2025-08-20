@@ -1,0 +1,13 @@
+[2025-08-18T09:06:42.145Z] Google sign-in error
+FirebaseError: Firebase: Error (auth/operation-not-supported-in-this-environment).
+    at createErrorInternal (C:\Users\wwwsh\Documents\Chrome\Playlist Master\My Mixtape\mixtape_software\node_modules\@firebase\auth\dist\node\totp-e8bbfd76.js:502:40)
+    at _createError (C:\Users\wwwsh\Documents\Chrome\Playlist Master\My Mixtape\mixtape_software\node_modules\@firebase\auth\dist\node\totp-e8bbfd76.js:478:12)
+    at Object.<anonymous> (C:\Users\wwwsh\Documents\Chrome\Playlist Master\My Mixtape\mixtape_software\node_modules\@firebase\auth\dist\node\totp-e8bbfd76.js:7357:29)
+    at Object.<anonymous> (C:\Users\wwwsh\Documents\Chrome\Playlist Master\My Mixtape\mixtape_software\node_modules\@firebase\auth\dist\node\totp-e8bbfd76.js:7694:3)
+    at Module._compile (node:internal/modules/cjs/loader:1696:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1829:10)
+    at Module.load (node:internal/modules/cjs/loader:1430:32)
+    at Module._load (node:internal/modules/cjs/loader:1253:12)
+    at c._load (node:electron/js2c/node_init:2:17993)
+    at s._load (node:electron/js2c/renderer_init:2:31794)
+

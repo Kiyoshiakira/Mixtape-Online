@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Mixtape</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="../assets/logo.png" class="logo" alt="Mixtape Master Logo">
+      <h1>My Mixtape</h1>
+	  <div id="user-profile" class="user-profile" style="float:right;"></div>
+    </header>
+    <main>
+      <div class="auth-block">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="login-btn" class="pixel-btn">Login</button>
+        <button id="register-btn" class="pixel-btn">Register</button>
+		<button id="google-btn" class="pixel-btn">Sign in with Google</button>
+        <button id="logout-btn" class="pixel-btn" style="display:none;">Logout</button>
+        <div id="auth-status" class="auth-status"></div>
+      </div>
+      <div class="add-block">
+        <input type="text" id="episode-name" placeholder="Episode/Show Name">
+        <input type="text" id="episode-url" placeholder="Video URL">
+        <button id="add-btn" class="pixel-btn green-btn">Add Episode</button>
+      </div>
+      <div class="playlist">
+        <h2>Mixtape Playlist</h2>
+        <ul id="playlist-list"></ul>
+      </div>
+      <div class="import-export">
+        <button id="import-btn" class="pixel-btn">Import Playlist</button>
+        <button id="export-btn" class="pixel-btn">Export Playlist</button>
+      </div>
+    </main>
+    <footer>
+      <small>Retro pixel-art style by Kiyoshiakira</small>
+    </footer>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>

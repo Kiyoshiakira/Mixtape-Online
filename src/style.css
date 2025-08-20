@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  background: #181530;
+  font-family: 'Press Start 2P', 'Courier New', Courier, monospace;
+  margin: 0;
+  color: #ffecd6;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+.container {
+  width: 640px;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  image-rendering: pixelated;
+  border: 2px solid #ffb347;
+  background: #222;
+  border-radius: 8px;
+  margin-bottom: 7px;
+}
+
+h1 {
+  font-size: 2.4em;
+  color: #fff2ae;
+  text-shadow: 2px 2px 0 #6d5a9c;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.auth-block {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.auth-block input {
+  border: 2px solid #ffb347;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1em;
+  padding: 6px 10px;
+  outline: none;
+  min-width: 0;
+}
+
+.pixel-btn {
+  background: #fff;
+  color: #181530;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1em;
+  padding: 5px 14px;
+  cursor: pointer;
+  box-shadow: 1px 1px 0 #222;
+  font-weight: bold;
+  transition: background 0.1s;
+  min-width: 100px;
+  margin-bottom: 3px;
+  text-shadow: none;
+}
+
+.pixel-btn:hover {
+  background: #ffecd6;
+}
+
+.green-btn {
+  background: #62d36f;
+  color: #222;
+}
+
+.green-btn:hover {
+  background: #a5ffb0;
+}
+
+.auth-status {
+  font-size: 1em;
+  color: #ff5757;
+  margin-left: 10px;
+  font-family: inherit;
+  min-width: 180px;
+}
+
+.auth-status.success {
+  color: #62d36f;
+}
+
+.auth-status.loading {
+  color: #b5e4ff;
+}
+
+.add-block {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.add-block input {
+  flex: 1 1 150px;
+  border: 2px solid #ffb347;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1em;
+  padding: 6px 10px;
+  outline: none;
+  min-width: 0;
+}
+
+.playlist {
+  background: #282040;
+  border: 2px solid #ffb347;
+  border-radius: 8px;
+  padding: 18px 20px 12px 20px;
+  min-width: 340px;
+  min-height: 70px;
+  margin-bottom: 14px;
+  box-shadow: 0 0 6px #ffb347;
+  font-size: 1em;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.playlist-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #fff2ae;
+  margin-bottom: 12px;
+  font-family: 'Press Start 2P', monospace;
+  text-shadow: 2px 2px 0 #6d5a9c;
+}
+
+.playlist-episode {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+  width: 100%;
+}
+
+.ep-name {
+  color: #f6c177;
+  font-weight: bold;
+  font-family: 'Press Start 2P', monospace;
+  text-shadow: 1px 1px #222;
+  margin-right: 10px;
+}
+
+.ep-url {
+  color: #b5e4ff;
+  text-decoration: underline;
+  font-family: 'Press Start 2P', monospace;
+  text-shadow: 1px 1px #222;
+  overflow-x: auto;
+  flex: 1;
+}
+
+.remove-btn {
+  background: #ff5757;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 0.85em;
+  padding: 2px 8px;
+  margin-left: 7px;
+  cursor: pointer;
+  box-shadow: 1px 1px 0 #222;
+  font-family: inherit;
+  font-weight: bold;
+  transition: background 0.1s;
+}
+.remove-btn:hover {
+  background: #a13d3d;
+}
+
+.import-export {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  justify-content: center;
+  width: 100%;
+}
+
+.import-export button {
+  background: #fff;
+  color: #181530;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 14px;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  margin: 0 2px;
+  box-shadow: 1px 1px 0 #222;
+  font-weight: bold;
+  transition: background 0.1s;
+}
+.import-export button:hover {
+  background: #ffecd6;
+}
+
+.footer {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.85em;
+  color: #ffecd6;
+  opacity: 0.7;
+}
+
+/* Responsive tweaks for smaller screens */
+@media (max-width: 600px) {
+  body {
+    padding: 0 2vw;
+  }
+  .main-card {
+    max-width: 99vw;
+    min-width: 0;
+    padding: 0 2vw;
+  }
+  .playlist {
+    min-width: 0;
+    width: 100%;
+    padding: 14px 8px;
+  }
+  .add-block input {
+    font-size: 0.95em;
+    padding: 4px 4px;
+  }
+  .add-block button {
+    min-width: 80px;
+    font-size: 0.95em;
+    padding: 4px 7px;
+  }
+}

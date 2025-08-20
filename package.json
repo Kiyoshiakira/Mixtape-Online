@@ -1,0 +1,15 @@
+{
+  "name": "mixtape-pc",
+  "version": "1.0.0",
+  "description": "Retro Mixtape Playlist Manager for PC",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^37.3.0"
+  },
+  "dependencies": {
+    "firebase": "^12.1.0"
+  }
+}
