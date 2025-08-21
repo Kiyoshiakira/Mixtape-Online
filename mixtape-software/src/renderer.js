@@ -1,4 +1,5 @@
 const { db, auth } = require('./firebase');
+const { collection, getDocs } = require('firebase/firestore');
 const fs = require('fs');
 const path = require('path');
 const playlistFile = path.join(__dirname, '..', 'playlist.json');
@@ -6,7 +7,6 @@ const errorLogFile = path.join(__dirname, '..', 'error.log');
 const { ipcRenderer, shell } = require('electron');
 
 // --- GOOGLE SIGN-IN (Electron handoff flow only) ---
-// Listen for token from main process (after browser sign-in)
 ipcRenderer.on('google-token', async (event, token) => {
   try {
     await auth.signInWithCustomToken(token);
@@ -17,9 +17,8 @@ ipcRenderer.on('google-token', async (event, token) => {
   }
 });
 
-// Google button: open browser to web sign-in (no popup in Electron)
 document.getElementById('google-btn').addEventListener('click', () => {
-  shell.openExternal('https://mymixtape.online/auth?platform=electron');
+  shell.openExternal('https://mymixtape.online/auth.html?platform=electron');
 });
 
 // --- AUTH STATE & UI ---
@@ -46,7 +45,6 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-// --- ERROR LOGGING ---
 function logError(message, errorObj = null) {
   const logMsg = `[${new Date().toISOString()}] ${message}` +
     (errorObj ? `\n${errorObj.stack || errorObj.message || errorObj}\n` : '') + '\n';
@@ -57,7 +55,6 @@ function logError(message, errorObj = null) {
   }
 }
 
-// --- AUTH LOGIC ---
 function setAuthStatus(msg, type = "") {
   const el = document.getElementById('auth-status');
   el.textContent = msg;
@@ -140,6 +137,58 @@ auth.onAuthStateChanged((user) => {
 document.getElementById('login-btn').addEventListener('click', login);
 document.getElementById('register-btn').addEventListener('click', register);
 document.getElementById('logout-btn').addEventListener('click', logout);
+
+// --- FIRESTORE LOGIC FOR SHOWS/EPISODES ---
+
+// Fetch all shows
+async function fetchShows() {
+  const showsCol = collection(db, 'shows');
+  const showSnapshot = await getDocs(showsCol);
+  return showSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
+// Fetch episodes for a given show
+async function fetchEpisodes(showId) {
+  const episodesCol = collection(db, `shows/${showId}/episodes`);
+  const episodeSnapshot = await getDocs(episodesCol);
+  return episodeSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
+// Render show list
+async function renderShows() {
+  try {
+    const shows = await fetchShows();
+    const ul = document.getElementById('shows-list');
+    ul.innerHTML = '';
+    shows.forEach(show => {
+      const li = document.createElement('li');
+      li.textContent = show.title + ' (' + show.provider + ')';
+      li.style.cursor = 'pointer';
+      li.onclick = () => renderEpisodes(show.id, show.title);
+      ul.appendChild(li);
+    });
+  } catch (err) {
+    logError("Render shows error", err);
+    alert("Error loading shows.");
+  }
+}
+
+// Render episode list for a show
+async function renderEpisodes(showId, showTitle) {
+  try {
+    const episodes = await fetchEpisodes(showId);
+    const ul = document.getElementById('episodes-list');
+    ul.innerHTML = `<h3>Episodes for ${showTitle}</h3>`;
+    episodes.forEach(ep => {
+      const li = document.createElement('li');
+      li.textContent = `S${ep.season}E${ep.episodeNumber}: ${ep.title}`;
+      ul.appendChild(li);
+    });
+  } catch (err) {
+    logError("Render episodes error", err);
+    alert("Error loading episodes.");
+  }
+}
 
 // --- PLAYLIST LOGIC (local file) ---
 function loadPlaylist() {
@@ -230,7 +279,10 @@ document.getElementById('add-btn').addEventListener('click', () => {
   );
 });
 
-document.addEventListener('DOMContentLoaded', renderPlaylist);
+document.addEventListener('DOMContentLoaded', () => {
+  renderPlaylist();
+  renderShows(); // Load shows at startup
+});
 
 document.getElementById('import-btn').addEventListener('click', () => {
   alert('Import functionality coming soon!');
