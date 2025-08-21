@@ -10,7 +10,7 @@
     <header>
       <img src="../assets/logo.png" class="logo" alt="Mixtape Master Logo">
       <h1>My Mixtape</h1>
-	  <div id="user-profile" class="user-profile" style="float:right;"></div>
+      <div id="user-profile" class="user-profile" style="float:right;"></div>
     </header>
     <main>
       <div class="auth-block">
@@ -18,10 +18,22 @@
         <input type="password" id="password" placeholder="Password">
         <button id="login-btn" class="pixel-btn">Login</button>
         <button id="register-btn" class="pixel-btn">Register</button>
-		<button id="google-btn" class="pixel-btn">Sign in with Google</button>
+        <button id="google-btn" class="pixel-btn">Sign in with Google</button>
         <button id="logout-btn" class="pixel-btn" style="display:none;">Logout</button>
         <div id="auth-status" class="auth-status"></div>
       </div>
+      <hr>
+      <!-- SHOWS SECTION -->
+      <div class="shows-block">
+        <h2>Shows</h2>
+        <ul id="shows-list"></ul>
+      </div>
+      <!-- EPISODES SECTION -->
+      <div class="episodes-block">
+        <h2>Episodes</h2>
+        <ul id="episodes-list"></ul>
+      </div>
+      <hr>
       <div class="add-block">
         <input type="text" id="episode-name" placeholder="Episode/Show Name">
         <input type="text" id="episode-url" placeholder="Video URL">
