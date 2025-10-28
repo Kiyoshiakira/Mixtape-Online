@@ -1,5 +1,5 @@
 const { db, auth } = require('./firebase');
-const { collection, getDocs } = require('firebase/firestore');
+const { collection, getDocs, query, orderBy, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp, where } = require('firebase/firestore');
 const fs = require('fs');
 const path = require('path');
 const playlistFile = path.join(__dirname, '..', 'playlist.json');
@@ -22,7 +22,7 @@ document.getElementById('google-btn').addEventListener('click', () => {
 });
 
 // --- AUTH STATE & UI ---
-auth.onAuthStateChanged((user) => {
+auth.onAuthStateChanged(async (user) => {
   if (user) {
     let profileHtml = "";
     if (user.photoURL) {
@@ -35,6 +35,12 @@ auth.onAuthStateChanged((user) => {
     document.getElementById('login-btn').style.display = 'none';
     document.getElementById('register-btn').style.display = 'none';
     document.getElementById('google-btn').style.display = 'none';
+    
+    // Migrate local playlist to Firestore (runs once)
+    await migrateLocalPlaylistToFirestore(user.uid);
+    
+    // Subscribe to Firestore playlist
+    subscribeToPlaylist(user.uid);
   } else {
     document.getElementById('user-profile').innerHTML = "";
     setAuthStatus("Not logged in.", "");
@@ -42,6 +48,13 @@ auth.onAuthStateChanged((user) => {
     document.getElementById('login-btn').style.display = '';
     document.getElementById('register-btn').style.display = '';
     document.getElementById('google-btn').style.display = '';
+    
+    // Unsubscribe from Firestore and use local playlist
+    if (playlistUnsubscribe) {
+      playlistUnsubscribe();
+      playlistUnsubscribe = null;
+    }
+    renderPlaylist(); // Fall back to local playlist
   }
 });
 
@@ -120,23 +133,157 @@ function logout() {
     });
 }
 
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    setAuthStatus(`Logged in as ${user.email}`, "success");
-    document.getElementById('logout-btn').style.display = '';
-    document.getElementById('login-btn').disabled = true;
-    document.getElementById('register-btn').disabled = true;
-  } else {
-    setAuthStatus("Not logged in.", "");
-    document.getElementById('logout-btn').style.display = 'none';
-    document.getElementById('login-btn').disabled = false;
-    document.getElementById('register-btn').disabled = false;
-  }
-});
-
 document.getElementById('login-btn').addEventListener('click', login);
 document.getElementById('register-btn').addEventListener('click', register);
 document.getElementById('logout-btn').addEventListener('click', logout);
+
+// --- FIRESTORE PLAYLIST LOGIC ---
+let playlistUnsubscribe = null; // Store the unsubscribe function for onSnapshot
+
+// Subscribe to Firestore playlist for authenticated user
+function subscribeToPlaylist(uid) {
+  if (playlistUnsubscribe) {
+    playlistUnsubscribe(); // Clean up previous listener
+  }
+  
+  try {
+    const playlistCol = collection(db, `users/${uid}/mixtape`);
+    const q = query(playlistCol, orderBy('createdAt', 'asc'));
+    
+    playlistUnsubscribe = onSnapshot(q, (snapshot) => {
+      const docs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      renderPlaylistFromDocs(docs);
+    }, (err) => {
+      logError("Firestore playlist snapshot error", err);
+      setAuthStatus("Error loading playlist from cloud.", "");
+    });
+  } catch (err) {
+    logError("Subscribe to playlist error", err);
+  }
+}
+
+// Render playlist from Firestore documents
+function renderPlaylistFromDocs(docs) {
+  try {
+    const ul = document.getElementById('playlist-list');
+    ul.innerHTML = '';
+    if (docs.length === 0) {
+      ul.innerHTML = '<li style="opacity:0.6;">No mixtape episodes yet!</li>';
+      return;
+    }
+    docs.forEach((ep) => {
+      const li = document.createElement('li');
+      li.className = 'playlist-episode';
+      const name = document.createElement('span');
+      name.textContent = ep.name;
+      name.className = 'ep-name';
+      const url = document.createElement('a');
+      url.textContent = ep.url;
+      url.href = ep.url;
+      url.target = '_blank';
+      url.className = 'ep-url';
+      const remove = document.createElement('button');
+      remove.textContent = 'Remove';
+      remove.className = 'remove-btn';
+      remove.onclick = () => removeEpisodeFromFirestore(ep.id);
+      li.appendChild(name);
+      li.appendChild(document.createTextNode(' - '));
+      li.appendChild(url);
+      li.appendChild(remove);
+      ul.appendChild(li);
+    });
+  } catch (err) {
+    logError("Render playlist from docs error", err);
+  }
+}
+
+// Add episode to Firestore
+async function addEpisodeToFirestore(name, url, uid) {
+  try {
+    if (!name.trim() || !url.trim()) return;
+    
+    // Check for duplicates
+    const playlistCol = collection(db, `users/${uid}/mixtape`);
+    const q = query(playlistCol, where('url', '==', url));
+    const snapshot = await getDocs(q);
+    
+    if (!snapshot.empty) {
+      alert('This URL is already in your mixtape!');
+      return;
+    }
+    
+    // Add new episode
+    await addDoc(playlistCol, {
+      name,
+      url,
+      createdAt: serverTimestamp()
+    });
+    
+    document.getElementById('episode-name').value = '';
+    document.getElementById('episode-url').value = '';
+  } catch (err) {
+    logError("Add episode to Firestore error", err);
+    alert('Error adding episode to cloud.');
+  }
+}
+
+// Remove episode from Firestore
+async function removeEpisodeFromFirestore(docId) {
+  try {
+    const user = auth.currentUser;
+    if (!user) return;
+    
+    const docRef = doc(db, `users/${user.uid}/mixtape`, docId);
+    await deleteDoc(docRef);
+  } catch (err) {
+    logError("Remove episode from Firestore error", err);
+    alert('Error removing episode from cloud.');
+  }
+}
+
+// Migrate local playlist to Firestore (runs once on first sign-in)
+async function migrateLocalPlaylistToFirestore(uid) {
+  try {
+    // Check if migration has already been done
+    if (window.localStorage.getItem('mixtape_migration_done') === '1') {
+      return;
+    }
+    
+    // Check if local playlist file exists and has content
+    if (!fs.existsSync(playlistFile)) {
+      window.localStorage.setItem('mixtape_migration_done', '1');
+      return;
+    }
+    
+    const localPlaylist = loadPlaylist();
+    if (localPlaylist.length === 0) {
+      window.localStorage.setItem('mixtape_migration_done', '1');
+      return;
+    }
+    
+    // Migrate each episode to Firestore
+    const playlistCol = collection(db, `users/${uid}/mixtape`);
+    for (const ep of localPlaylist) {
+      // Check if URL already exists
+      const q = query(playlistCol, where('url', '==', ep.url));
+      const snapshot = await getDocs(q);
+      
+      if (snapshot.empty) {
+        await addDoc(playlistCol, {
+          name: ep.name,
+          url: ep.url,
+          createdAt: serverTimestamp()
+        });
+      }
+    }
+    
+    // Mark migration as done
+    window.localStorage.setItem('mixtape_migration_done', '1');
+    setAuthStatus("Local playlist migrated to cloud!", "success");
+  } catch (err) {
+    logError("Migrate playlist error", err);
+  }
+}
 
 // --- FIRESTORE LOGIC FOR SHOWS/EPISODES ---
 
@@ -254,6 +401,15 @@ function renderPlaylist() {
 }
 
 function addEpisode(name, url) {
+  const user = auth.currentUser;
+  
+  // If user is authenticated, use Firestore
+  if (user) {
+    addEpisodeToFirestore(name, url, user.uid);
+    return;
+  }
+  
+  // Otherwise, use local playlist
   try {
     if (!name.trim() || !url.trim()) return;
     const playlist = loadPlaylist();
@@ -287,9 +443,25 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('import-btn').addEventListener('click', () => {
   alert('Import functionality coming soon!');
 });
-document.getElementById('export-btn').addEventListener('click', () => {
+document.getElementById('export-btn').addEventListener('click', async () => {
   try {
-    const playlist = loadPlaylist();
+    let playlist = [];
+    const user = auth.currentUser;
+    
+    // If user is authenticated, export from Firestore
+    if (user) {
+      const playlistCol = collection(db, `users/${user.uid}/mixtape`);
+      const q = query(playlistCol, orderBy('createdAt', 'asc'));
+      const snapshot = await getDocs(q);
+      playlist = snapshot.docs.map(doc => {
+        const data = doc.data();
+        return { name: data.name, url: data.url };
+      });
+    } else {
+      // Otherwise, export from local file
+      playlist = loadPlaylist();
+    }
+    
     const blob = new Blob([JSON.stringify(playlist, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
