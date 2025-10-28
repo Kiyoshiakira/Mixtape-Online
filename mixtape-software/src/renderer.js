@@ -6,6 +6,13 @@ const playlistFile = path.join(__dirname, '..', 'playlist.json');
 const errorLogFile = path.join(__dirname, '..', 'error.log');
 const { ipcRenderer, shell } = require('electron');
 
+// --- FIRESTORE PLAYLIST LOGIC VARIABLES ---
+let playlistUnsubscribe = null; // Store the unsubscribe function for onSnapshot
+
+// Migration constants
+const MIGRATION_FLAG = 'mixtape_migration_done';
+const MIGRATION_DONE_VALUE = '1';
+
 // --- GOOGLE SIGN-IN (Electron handoff flow only) ---
 ipcRenderer.on('google-token', async (event, token) => {
   try {
@@ -138,7 +145,6 @@ document.getElementById('register-btn').addEventListener('click', register);
 document.getElementById('logout-btn').addEventListener('click', logout);
 
 // --- FIRESTORE PLAYLIST LOGIC ---
-let playlistUnsubscribe = null; // Store the unsubscribe function for onSnapshot
 
 // Subscribe to Firestore playlist for authenticated user
 function subscribeToPlaylist(uid) {
@@ -208,7 +214,7 @@ async function addEpisodeToFirestore(name, url, uid) {
     const snapshot = await getDocs(q);
     
     if (!snapshot.empty) {
-      alert('This URL is already in your mixtape!');
+      setAuthStatus('This URL is already in your mixtape!', '');
       return;
     }
     
@@ -223,7 +229,7 @@ async function addEpisodeToFirestore(name, url, uid) {
     document.getElementById('episode-url').value = '';
   } catch (err) {
     logError("Add episode to Firestore error", err);
-    alert('Error adding episode to cloud.');
+    setAuthStatus('Error adding episode to cloud.', '');
   }
 }
 
@@ -237,7 +243,7 @@ async function removeEpisodeFromFirestore(docId) {
     await deleteDoc(docRef);
   } catch (err) {
     logError("Remove episode from Firestore error", err);
-    alert('Error removing episode from cloud.');
+    setAuthStatus('Error removing episode from cloud.', '');
   }
 }
 
@@ -245,19 +251,19 @@ async function removeEpisodeFromFirestore(docId) {
 async function migrateLocalPlaylistToFirestore(uid) {
   try {
     // Check if migration has already been done
-    if (window.localStorage.getItem('mixtape_migration_done') === '1') {
+    if (window.localStorage.getItem(MIGRATION_FLAG) === MIGRATION_DONE_VALUE) {
       return;
     }
     
     // Check if local playlist file exists and has content
     if (!fs.existsSync(playlistFile)) {
-      window.localStorage.setItem('mixtape_migration_done', '1');
+      window.localStorage.setItem(MIGRATION_FLAG, MIGRATION_DONE_VALUE);
       return;
     }
     
     const localPlaylist = loadPlaylist();
     if (localPlaylist.length === 0) {
-      window.localStorage.setItem('mixtape_migration_done', '1');
+      window.localStorage.setItem(MIGRATION_FLAG, MIGRATION_DONE_VALUE);
       return;
     }
     
@@ -278,7 +284,7 @@ async function migrateLocalPlaylistToFirestore(uid) {
     }
     
     // Mark migration as done
-    window.localStorage.setItem('mixtape_migration_done', '1');
+    window.localStorage.setItem(MIGRATION_FLAG, MIGRATION_DONE_VALUE);
     setAuthStatus("Local playlist migrated to cloud!", "success");
   } catch (err) {
     logError("Migrate playlist error", err);
