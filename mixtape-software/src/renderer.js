@@ -420,7 +420,7 @@ function addEpisode(name, url) {
     if (!name.trim() || !url.trim()) return;
     const playlist = loadPlaylist();
     if (playlist.some(ep => ep.url === url)) {
-      alert('This URL is already in your mixtape!');
+      setAuthStatus('This URL is already in your mixtape!', '');
       return;
     }
     playlist.push({ name, url });
@@ -430,7 +430,7 @@ function addEpisode(name, url) {
     document.getElementById('episode-url').value = '';
   } catch (err) {
     logError("Add episode error", err);
-    alert('Error adding episode.');
+    setAuthStatus('Error adding episode.', '');
   }
 }
 
@@ -475,6 +475,6 @@ document.getElementById('export-btn').addEventListener('click', async () => {
     a.click();
   } catch (err) {
     logError("Export playlist error", err);
-    alert('Error exporting playlist.');
+    setAuthStatus('Error exporting playlist.', '');
   }
 });
