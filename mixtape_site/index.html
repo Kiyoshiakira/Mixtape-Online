@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mymixtape.online - Relive the Magic of VHS</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -19,45 +18,58 @@
     <nav>
         <div class="container nav-container">
             <a href="index.html" class="nav-item">Home</a>
-            <div class="hamburger-menu">
-                <div class="hamburger-icon">&#9776;</div>
-            </div>
-            <div class="nav-links">
-                <div class="dropdown">
-                    <div class="nav-item">About &#9662;</div>
-                    <div class="dropdown-content">
-                        <a href="features.html">Features</a>
-                        <a href="wiki.html">Wiki</a>
-                        <a href="https://github.com/Kiyoshiakira/Mixtape-Online/blob/main/ROADMAP.md" target="_blank">Roadmap</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <div class="nav-item">Download &#9662;</div>
-                    <div class="dropdown-content">
-                        <a href="download.html">Mixtape App</a>
-                        <a href="download.html#download-ext">Browser Extension</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <div class="nav-item">Community &#9662;</div>
-                    <div class="dropdown-content">
-                        <a href="https://discord.gg/h6WdsZTHE2" target="_blank">Discord</a>
-                        <a href="contact.html">Contact</a>
-                    </div>
-                </div>
-                <div id="user-profile-area"></div>
-            </div>
+            <a href="features.html" class="nav-item">About</a>
+            <a href="download.html" class="nav-item">Download</a>
+            <a href="contact.html" class="nav-item">Community</a>
+            <a href="#" class="nav-item">Login/Sign Up</a>
         </div>
     </nav>
     <main class="container">
-        <section id="hero">
-            <h2>Create, Share, and Relive Your Favorite Moments</h2>
-            <p>mymixtape.online lets you curate video mixtapes from your favorite streaming services and experience them in a virtual reality VHS store. It's a nostalgic trip back to the future of entertainment.</p>
+        <section class="info-box">
+            <h2>Step Back in Time, Virtually</h2>
+            <p>mymixtape.online lets you curate and experience online videos like never before. Create personalized VHS mixtapes and immerse yourself in a nostalgic virtual reality showroom. It's your content, your collection, your personal time capsule.</p>
+            <a href="features.html" class="cta-button">See The Features</a>
+        </section>
+        <section class="info-box">
+            <h2>What is mymixtape.online?</h2>
+            <p>It's a platform for creating, sharing, and experiencing personalized video mixtapes with the look and feel of classic VHS tapes. We provide a desktop app, a browser extension for easy video capture, and a VR application to browse your collection in a virtual showroom.</p>
+        </section>
+        <section class="info-box">
+            <h2>Features Overview</h2>
+            <h3>Create & Share</h3>
+            <p>Compile your favorite videos into mixtapes with custom labels and art.</p>
+            <h3>Authentic VHS Feel</h3>
+            <p>Experience nostalgic visual effects like tape wear and tracking issues.</p>
+            <h3>VR Showroom</h3>
+            <p>Browse and play your collection in an immersive virtual reality environment.</p>
+        </section>
+        <section class="info-box">
+            <h2>How It Works</h2>
+            <ol>
+                <li>
+                    <h3>Capture</h3>
+                    <p>Use our browser extension to grab videos from your favorite sites.</p>
+                </li>
+                <li>
+                    <h3>Create</h3>
+                    <p>Arrange your captured videos into a mixtape using our desktop app.</p>
+                </li>
+                <li>
+                    <h3>Experience</h3>
+                    <p>Immerse yourself in your collection with our VR showroom app.</p>
+                </li>
+            </ol>
         </section>
     </main>
     <footer>
         <div class="container">
             <p>&copy; 2025 mymixtape.online. Bringing back the magic of VHS collections.</p>
+            <div class="social-links">
+                <a href="#">📧</a>
+                <a href="#">💬</a>
+                <a href="#">🦩</a>
+                <a href="#">💾</a>
+            </div>
         </div>
     </footer>
     <script src="app.js"></script>
