@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mymixtape.online - Wiki</title>
+    <title>mymixtape.online - My Profile</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -50,10 +50,11 @@
         </div>
     </nav>
     <main class="container">
-        <section id="wiki" class="section">
-            <h2>Wiki & Documentation</h2>
-            <p>Your guide to creating, sharing, and experiencing video mixtapes.</p>
-            <!-- Content will be dynamically loaded here or link to a dedicated wiki page -->
+        <section id="user-profile" class="section">
+            <h2>My Profile</h2>
+            <div id="profile-info">
+                <!-- User info will be loaded here -->
+            </div>
         </section>
     </main>
     <footer>
@@ -62,5 +63,19 @@
         </div>
     </footer>
     <script src="app.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                const profileInfo = document.getElementById('profile-info');
+                profileInfo.innerHTML = `
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Name:</strong> ${user.displayName || 'Not set'}</p>
+                    <img src="${user.photoURL || 'assets/default-avatar.png'}" alt="Profile Picture" class="profile-pic-large">
+                `;
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
 </body>
 </html>

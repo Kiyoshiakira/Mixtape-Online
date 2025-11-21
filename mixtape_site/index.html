@@ -3,95 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My VHS Mixtape - Relive the Magic of VHS Collections</title>
-    <link rel="stylesheet" href="mixtape.css">
+    <title>mymixtape.online - Relive the Magic of VHS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 </head>
 <body>
     <header>
         <div class="container logo-area">
             <img src="assets/logo.png" alt="My Mixtape Logo" class="logo-img">
-            <div class="logo-title pixel-font">MY VHS MIXTAPE</div>
+            <h1 class="logo-title">mymixtape.online</h1>
         </div>
-        <div class="tagline pixel-font">Relive the Magic of VHS Collections in VR</div>
+        <p class="tagline">Relive the Magic of VHS Collections in VR</p>
     </header>
     <nav>
         <div class="container nav-container">
-            <a href="index.html" class="nav-item pixel-font">Home</a>
-            <a href="#download" class="nav-item pixel-font" onclick="showSection('download')">Download</a>
-            <a href="features.html" class="nav-item pixel-font">Features</a>
-            <a href="#community" class="nav-item pixel-font" onclick="showSection('community')">Community</a>
-            <a href="#roadmap" class="nav-item pixel-font" onclick="showSection('roadmap')">Roadmap</a>
-            <a href="#contact" class="nav-item pixel-font" onclick="showSection('contact')">Contact</a>
-            <a href="wiki.html" class="nav-item pixel-font">Wiki</a>
+            <a href="index.html" class="nav-item">Home</a>
+            <div class="hamburger-menu">
+                <div class="hamburger-icon">&#9776;</div>
+            </div>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <div class="nav-item">About &#9662;</div>
+                    <div class="dropdown-content">
+                        <a href="features.html">Features</a>
+                        <a href="wiki.html">Wiki</a>
+                        <a href="https://github.com/Kiyoshiakira/Mixtape-Online/blob/main/ROADMAP.md" target="_blank">Roadmap</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <div class="nav-item">Download &#9662;</div>
+                    <div class="dropdown-content">
+                        <a href="download.html">Mixtape App</a>
+                        <a href="download.html#download-ext">Browser Extension</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <div class="nav-item">Community &#9662;</div>
+                    <div class="dropdown-content">
+                        <a href="https://discord.gg/h6WdsZTHE2" target="_blank">Discord</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div id="user-profile-area"></div>
+            </div>
         </div>
     </nav>
-    <main>
-        <div class="container">
-            <section id="home" class="section active">
-                <h1 class="pixel-font">Welcome to My Mixtape</h1>
-                <p class="tagline pixel-font">Transform your streaming experience into a nostalgic VHS collection!</p>
-                <a href="#download" class="cta-button pixel-font" onclick="showSection('download')">Download Now</a>
-            </section>
-            <section id="download" class="section">
-                <h2 class="pixel-font">Download My VHS Mixtape</h2>
-                <p>Get the latest version for your platform:</p>
-                <a href="#" class="cta-button pixel-font">Windows</a>
-                <a href="#" class="cta-button pixel-font">Mac</a>
-                <a href="#" class="cta-button pixel-font">Linux</a>
-            </section>
-            <section id="download-ext" class="section">
-                <h2 class="pixel-font">Download VHS Mixtape Extension</h2>
-                <p>Get the latest version for your browser:</p>
-                <a href="#" class="cta-button pixel-font">Chrome</a>
-                <a href="#" class="cta-button pixel-font">Firefox</a>
-                <a href="#" class="cta-button pixel-font">Edge</a>
-            </section>
-            <section id="community" class="section">
-                <h2 class="pixel-font">Community</h2>
-                <p>Join our Discord to chat, share Mixtapes, and help develop the apps</p>
-                <a href="https://discord.gg/h6WdsZTHE2" class="cta-button pixel-font">Discord</a>
-            </section>
-            <section id="roadmap" class="section">
-                <h2 class="pixel-font">Roadmap</h2>
-                <p>See what's coming next for My Mixtape.</p>
-                <a href="https://github.com/Kiyoshiakira/Mixtape-Online/blob/main/ROADMAP.md" class="cta-button pixel-font">Roadmap</a>
-            </section>
-				<section id="contact" class="section">
-					<h2 class="pixel-font">Contact</h2>
-					<form class="contact-form">
-						<input type="text" placeholder="Your Name">
-						<input type="email" placeholder="Your Email">
-						<textarea placeholder="Your Message"></textarea>
-						<button type="submit" class="submit-btn pixel-font">Send</button>
-					</form>
-				</section>
-        </div>
+    <main class="container">
+        <section id="hero">
+            <h2>Create, Share, and Relive Your Favorite Moments</h2>
+            <p>mymixtape.online lets you curate video mixtapes from your favorite streaming services and experience them in a virtual reality VHS store. It\'s a nostalgic trip back to the future of entertainment.</p>
+            <a href="download.html" class="cta-button">Get Started Now</a>
+        </section>
     </main>
     <footer>
         <div class="container">
-            <p>&copy; 2025 My Mixtape. Bringing back the magic of VHS collections.</p>
-            <div class="social-links">
-                <a href="#">📧</a>
-                <a href="#">💬</a>
-                <a href="#">🐦</a>
-                <a href="#">📘</a>
-            </div>
+            <p>&copy; 2025 mymixtape.online. Bringing back the magic of VHS collections.</p>
         </div>
     </footer>
-    <script>
-    function showSection(id) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        var section = document.getElementById(id);
-        if (section) section.classList.add('active');
-        // Scroll to section for smooth UX
-        if (section) section.scrollIntoView({ behavior: "smooth" });
-    }
-
-    // Optional: activate section if navigated with hash
-    window.addEventListener('DOMContentLoaded', function() {
-        const hash = window.location.hash.replace('#', '');
-        if (hash) showSection(hash);
-    });
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>

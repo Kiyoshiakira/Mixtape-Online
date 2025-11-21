@@ -1,30 +1,43 @@
-// app.js
+document.addEventListener('DOMContentLoaded', function () {
+    const firebaseConfig = {
+        apiKey: "AIzaSyBr3GHLtueuC_cs9_Vrzv5E1SeLk3Y0eUU",
+        authDomain: "my--vhs-mixtape.firebaseapp.com",
+        projectId: "my--vhs-mixtape"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
 
-// Your web app's Firebase configuration (Paste your *actual* config here)
-const firebaseConfig = {
-  apiKey: "AIzaSyBr3GHLtueuC_cs9_Vrzv5E1SeLk3Y0eUU",
-  authDomain: "my--vhs-mixtape.firebaseapp.com",
-  projectId: "my--vhs-mixtape",
-  storageBucket: "my--vhs-mixtape.firebasestorage.app",
-  messagingSenderId: "484405101513",
-  appId: "1:484405101513:web:e0eed3c32c3a04cf079e18",
-  measurementId: "G-2WX3D1K8YV"
-};
+    const userProfileArea = document.getElementById('user-profile-area');
 
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig); // Using the compat version from CDN
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            // User is signed in
+            userProfileArea.innerHTML = `
+                <img src="${user.photoURL || 'assets/default-avatar.png'}" alt="Profile" class="profile-pic">
+                <div id="user-dropdown" class="dropdown-content">
+                    <a href="profile.html">My Profile</a>
+                    <a href="#" id="logout-btn">Logout</a>
+                </div>
+            `;
 
-// Optional: You can get references to Firebase services now
-// const auth = firebase.auth();
-// const db = firebase.firestore();
+            document.getElementById('logout-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                auth.signOut().then(() => {
+                    window.location.href = 'index.html';
+                });
+            });
+        } else {
+            // User is signed out
+            userProfileArea.innerHTML = '<a href="login.html" class="nav-item">Login/Sign Up</a>';
+        }
+    });
 
-// Confirm Firebase is initialized
-console.log("Firebase initialized for My VHS Mixtape!");
-
-// You can add more JavaScript logic here later, e.g.,
-// document.addEventListener('DOMContentLoaded', () => {
-//   const someElement = document.getElementById('someId');
-//   if (someElement) {
-//     someElement.textContent = "Firebase is active!";
-//   }
-// });
+    const hamburger = document.querySelector('.hamburger-icon');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+});
